@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Box, Paper } from '@mui/material'
+import { Box, Paper, Button } from '@mui/material'
 import FormSignIn from 'components/FormSignIn'
 import FormSignUp from 'components/FormSignUp'
 
@@ -16,7 +16,14 @@ const App = () => {
       justifyContent="center"
     >
       <Paper elevation={3}>
-        <Box p={3}>{isSignIn ? <FormSignIn /> : <FormSignUp />}</Box>
+        <Box p={3}>
+          <>
+            {isSignIn ? <FormSignIn /> : <FormSignUp />}
+            <Button onClick={() => setIsSignIn(!isSignIn)}>
+              {isSignIn ? 'Sign up' : 'Sign in'}
+            </Button>
+          </>
+        </Box>
       </Paper>
     </Box>
   )

@@ -9,12 +9,14 @@ import {
 interface IProps<T extends FieldValues> {
   label?: string
   name: Path<T>
+  type?: string
   form: UseFormReturn<T>
 }
 
 const InputTextField = <T extends FieldValues>({
   form,
   name,
+  type = 'text',
   label = ''
 }: IProps<T>) => {
   const {
@@ -27,6 +29,7 @@ const InputTextField = <T extends FieldValues>({
   return (
     <TextField
       fullWidth
+      type={type}
       label={label}
       value={value}
       error={!!error}
