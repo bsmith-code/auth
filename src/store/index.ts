@@ -8,11 +8,19 @@ import { IUser } from 'types'
 const authApi = createApi({
   reducerPath: 'contact',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.REACT_APP_API_BASE_URL ?? ''}/v1/auth`
+    baseUrl: `${process.env.REACT_APP_API_BASE_URL ?? ''}/v1/auth`,
+    credentials: 'include'
   }),
   endpoints: build => ({
+    login: build.mutation<IUser, Pick<IUser, 'email' | 'password'>>({
+      query: body => ({
+        url: 'login',
+        method: 'POST',
+        body
+      })
+    }),
     createUser: build.mutation<
-      void,
+      IUser,
       Omit<IUser, 'uuid' | 'createdAt' | 'updatedAt'>
     >({
       query: body => ({
@@ -24,8 +32,13 @@ const authApi = createApi({
   })
 })
 
-export const { useCreateUserMutation, reducerPath, reducer, middleware } =
-  authApi
+export const {
+  reducer,
+  middleware,
+  reducerPath,
+  useLoginMutation,
+  useCreateUserMutation
+} = authApi
 
 const appReducer = {
   [reducerPath]: reducer

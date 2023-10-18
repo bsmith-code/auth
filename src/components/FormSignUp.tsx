@@ -1,7 +1,14 @@
+// Common
 import { useForm } from 'react-hook-form'
-import { Button, Typography } from '@mui/material'
-import InputTextField from 'components/InputTextField'
+
+// Store
 import { useCreateUserMutation } from 'store'
+
+// MUI
+import { Button, Typography } from '@mui/material'
+
+// Components
+import InputTextField from 'components/InputTextField'
 
 const FormSignUp = () => {
   const [createUser, { error, isLoading, isSuccess }] = useCreateUserMutation()
