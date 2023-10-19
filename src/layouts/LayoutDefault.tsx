@@ -25,10 +25,23 @@ const LayoutDefault = ({ children }: IProps) => (
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        backgroundImage: `url('assets/view_page-bg.jpg')`
+        backgroundImage: `url('assets/view_page-bg.jpg')`,
+        '&:after': {
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 0,
+          bottom: 0,
+          content: '""',
+          display: 'block',
+          position: 'absolute',
+          background: 'rgba(255, 255, 255, 0.4)'
+        }
       }}
     >
-      <Paper elevation={3}>{children}</Paper>
+      <Paper elevation={3} sx={{ zIndex: '500' }}>
+        {children}
+      </Paper>
     </Box>
     <LayoutAppFooter />
   </>

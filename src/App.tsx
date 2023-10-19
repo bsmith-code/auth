@@ -1,3 +1,6 @@
+// Common
+import { lazy, Suspense } from 'react'
+
 // Store
 import { useGetUserQuery } from 'store'
 
@@ -7,17 +10,21 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
 
 // Components
-import ViewPublic from 'views/ViewPublic'
-import ViewProtected from 'views/ViewProtected'
+import ViewLoader from 'views/ViewLoader'
 
 const App = () => {
   const { data: user } = useGetUserQuery()
+
+  const ViewPublic = lazy(() => import('views/ViewPublic'))
+  const ViewProtected = lazy(() => import('views/ViewProtected'))
 
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={lightTheme}>
         <CssBaseline />
-        {user ? <ViewProtected /> : <ViewPublic />}
+        <Suspense fallback={<ViewLoader />}>
+          {user ? <ViewProtected /> : <ViewPublic />}
+        </Suspense>
       </ThemeProvider>
     </StyledEngineProvider>
   )

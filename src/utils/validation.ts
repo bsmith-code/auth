@@ -31,5 +31,6 @@ export const signUpSchema = yup.object({
   [FORM_NAME_PASSWORD]: passwordSchema,
   [FORM_NAME_CONFIRM_PASSWORD]: yup
     .string()
+    .required('Password is required.')
     .oneOf([yup.ref(FORM_NAME_PASSWORD)], 'Passwords must match.')
 })

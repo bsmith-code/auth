@@ -1,3 +1,5 @@
-const ViewProtected = () => <div>You're Signed in!!</div>
+import LayoutDefault from 'layouts/LayoutDefault'
+
+const ViewProtected = () => <LayoutDefault>You signed in</LayoutDefault>
 
 export default ViewProtected
