@@ -53,7 +53,7 @@ const FormSignUp = () => {
       </Box>
 
       {FORM_SIGN_UP_FIELDS.map(field => (
-        <Box mb={2} width="400px">
+        <Box mb={2}>
           <InputTextField key={`field-${field.name}`} {...field} form={form} />
         </Box>
       ))}

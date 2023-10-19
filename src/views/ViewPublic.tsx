@@ -2,7 +2,7 @@
 import { useState } from 'react'
 
 // MUI
-import { Box, Button } from '@mui/material'
+import { Box, Button, Paper } from '@mui/material'
 
 // Components
 import FormSignIn from 'components/FormSignIn'
@@ -14,7 +14,7 @@ const ViewPublic = () => {
 
   return (
     <LayoutDefault>
-      <Box p={3}>
+      <Box p={3} width="100%" maxWidth="400px" component={Paper} zIndex={500}>
         <>
           {isSignIn ? <FormSignIn /> : <FormSignUp />}
           <Button onClick={() => setIsSignIn(!isSignIn)}>

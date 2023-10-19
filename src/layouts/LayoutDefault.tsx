@@ -39,9 +39,7 @@ const LayoutDefault = ({ children }: IProps) => (
         }
       }}
     >
-      <Paper elevation={3} sx={{ zIndex: '500' }}>
-        {children}
-      </Paper>
+      {children}
     </Box>
     <LayoutAppFooter />
   </>
