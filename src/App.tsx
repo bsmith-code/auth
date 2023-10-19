@@ -1,31 +1,25 @@
-import { useState } from 'react'
-import { Box, Paper, Button } from '@mui/material'
-import FormSignIn from 'components/FormSignIn'
-import FormSignUp from 'components/FormSignUp'
+// Store
+import { useGetUserQuery } from 'store'
+
+// MUI
+import { lightTheme } from 'styles'
+import CssBaseline from '@mui/material/CssBaseline'
+import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
+
+// Components
+import ViewPublic from 'views/ViewPublic'
+import ViewProtected from 'views/ViewProtected'
 
 const App = () => {
-  const [isSignIn, setIsSignIn] = useState(true)
+  const { data: user } = useGetUserQuery()
 
   return (
-    <Box
-      width="100vw"
-      height="100vh"
-      display="flex"
-      alignItems="center"
-      flexDirection="column"
-      justifyContent="center"
-    >
-      <Paper elevation={3}>
-        <Box p={3}>
-          <>
-            {isSignIn ? <FormSignIn /> : <FormSignUp />}
-            <Button onClick={() => setIsSignIn(!isSignIn)}>
-              {isSignIn ? 'Sign up' : 'Sign in'}
-            </Button>
-          </>
-        </Box>
-      </Paper>
-    </Box>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={lightTheme}>
+        <CssBaseline />
+        {user ? <ViewProtected /> : <ViewPublic />}
+      </ThemeProvider>
+    </StyledEngineProvider>
   )
 }
 

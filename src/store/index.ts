@@ -7,6 +7,7 @@ import { IUser } from 'types'
 
 const authApi = createApi({
   reducerPath: 'contact',
+  tagTypes: ['IUser'],
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.REACT_APP_API_BASE_URL ?? ''}/v1/auth`,
     credentials: 'include'
@@ -17,7 +18,8 @@ const authApi = createApi({
         url: 'login',
         method: 'POST',
         body
-      })
+      }),
+      invalidatesTags: ['IUser']
     }),
     createUser: build.mutation<
       IUser,
@@ -28,6 +30,10 @@ const authApi = createApi({
         method: 'POST',
         body
       })
+    }),
+    getUser: build.query<IUser, void>({
+      query: () => 'status',
+      providesTags: ['IUser']
     })
   })
 })
@@ -36,6 +42,7 @@ export const {
   reducer,
   middleware,
   reducerPath,
+  useGetUserQuery,
   useLoginMutation,
   useCreateUserMutation
 } = authApi

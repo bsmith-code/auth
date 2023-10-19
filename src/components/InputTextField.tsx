@@ -9,7 +9,7 @@ import {
 interface IProps<T extends FieldValues> {
   label?: string
   name: Path<T>
-  type?: string
+  type?: 'text' | 'password' | 'number'
   form: UseFormReturn<T>
 }
 
