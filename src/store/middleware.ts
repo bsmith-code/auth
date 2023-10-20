@@ -1,7 +1,11 @@
 // Common
-import { isAnyOf, isRejected, AnyAction } from '@reduxjs/toolkit'
-import { updateNotifications } from 'store/client'
-import { TAppListenerAPI } from 'types'
+import { isAnyOf, isRejected, createListenerMiddleware } from '@reduxjs/toolkit'
+
+// Store
+import { createNotification } from 'store/client'
+
+// Types
+import { TAppListenerAPI, TAppStartListening } from 'types'
 
 const ignoredActions = isAnyOf()
 
@@ -10,34 +14,26 @@ export const exceptionListeners = [
     matcher: isRejected,
     effect: (
       action: {
-        meta: {
-          arg?: {
-            type?: 'query' | 'mutation'
-          }
-        }
-        payload?: string
-        error: { message: string }
+        payload?: { data: { message: string } }
       },
       { dispatch }: TAppListenerAPI
     ) => {
-      const {
-        error,
-        payload,
-        meta: { arg = {} }
-      } = action ?? {}
-
-      let message = ''
-      if (arg.type === 'query' || arg.type === 'mutation') {
-        if (payload) {
-          message = payload
-        }
-      } else {
-        message = error.message
-      }
+      const message = action.payload?.data?.message ?? 'Something went wrong.'
 
       if (message) {
-        dispatch(updateNotifications({ message }))
+        dispatch(createNotification(message))
       }
     }
   }
 ]
+
+export const listenerMiddleware = createListenerMiddleware()
+
+const startAppListening =
+  listenerMiddleware.startListening as TAppStartListening
+
+const listeners = [...exceptionListeners]
+
+listeners.forEach(listener => {
+  startAppListening(listener as never) // TODO: figure out type
+})

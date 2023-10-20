@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 // Types
 import { IUser } from 'types'
 
-export const authApi = createApi({
+const authApi = createApi({
   reducerPath: 'contact',
   tagTypes: ['IUser'],
   baseQuery: fetchBaseQuery({
@@ -37,5 +37,11 @@ export const authApi = createApi({
   })
 })
 
-export const { useGetUserQuery, useLoginMutation, useCreateUserMutation } =
-  authApi
+export const {
+  reducer: authReducer,
+  middleware: authMiddleware,
+  reducerPath: authReducerPath,
+  useGetUserQuery,
+  useLoginMutation,
+  useCreateUserMutation
+} = authApi

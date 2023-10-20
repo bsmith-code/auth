@@ -1,35 +1,44 @@
+// Common
 import uniqid from 'uniqid'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-interface IClientState {
-  notifications: { message: string; key: string }[]
+// Types
+import { IRootState } from 'types'
+
+interface IAppState {
+  notifications: Record<string, string>
 }
-const initialState: IClientState = {
-  notifications: []
+const initialState: IAppState = {
+  notifications: {}
 }
 
 const reducers = {
-  updateNotifications: (
-    state: IClientState,
-    action: PayloadAction<{ message: string }>
+  createNotification: (
+    state: IAppState,
+    { payload }: PayloadAction<string>
   ) => {
-    state.notifications = [
-      ...state.notifications,
-      {
-        message: `${action?.payload?.message}`,
-        key: uniqid()
-      }
-    ]
+    state.notifications = {
+      [uniqid()]: payload ?? ''
+    }
+  },
+  removeNotification: (
+    state: IAppState,
+    { payload }: PayloadAction<string>
+  ) => {
+    delete state.notifications[payload]
   }
 }
 
-const clientSlice = createSlice({
-  name: 'client',
+const appSlice = createSlice({
+  name: 'app',
   reducers,
   initialState
 })
 
 export const {
-  reducer: clientReducer,
-  actions: { updateNotifications }
-} = clientSlice
+  reducer: appReducer,
+  actions: { createNotification, removeNotification }
+} = appSlice
+
+export const selectNotifications = (state: IRootState) =>
+  state?.app?.notifications ?? []

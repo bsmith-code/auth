@@ -1,25 +1,28 @@
 // Common
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
+// Middleware
+import { listenerMiddleware } from 'store/middleware'
+
 // Server
-import { authApi } from 'store/server'
+import { authReducer, authMiddleware, authReducerPath } from 'store/server'
 
 // Client
-import { clientReducer } from 'store/client'
+import { appReducer } from 'store/client'
 
-export const { reducer, middleware, reducerPath } = authApi
-
-export const appReducer = combineReducers({
-  client: clientReducer,
-  [reducerPath]: reducer
+export const reducer = combineReducers({
+  app: appReducer,
+  [authReducerPath]: authReducer
 })
 
 const store = configureStore({
-  reducer: appReducer,
+  reducer,
   devTools: process.env.NODE_ENV !== 'production',
   middleware: getDefaultMiddleware =>
-    // eslint-disable-next-line unicorn/prefer-spread
-    getDefaultMiddleware().concat(middleware)
+    getDefaultMiddleware()
+      .prepend(listenerMiddleware.middleware)
+      // eslint-disable-next-line unicorn/prefer-spread
+      .concat(authMiddleware)
 })
 
 export const { dispatch, getState } = store
