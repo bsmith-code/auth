@@ -1,10 +1,12 @@
 // Common
 import { lazy, Suspense } from 'react'
+import { SnackbarProvider } from 'notistack'
 
 // Store
 import { useGetUserQuery } from 'store/server'
 
 // MUI
+import { Grow } from '@mui/material'
 import { lightTheme } from 'styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
@@ -22,9 +24,11 @@ const App = () => {
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={lightTheme}>
         <CssBaseline />
-        <Suspense fallback={<ViewLoader />}>
-          {user ? <ViewProtected /> : <ViewPublic />}
-        </Suspense>
+        <SnackbarProvider maxSnack={4} TransitionComponent={Grow}>
+          <Suspense fallback={<ViewLoader />}>
+            {user ? <ViewProtected /> : <ViewPublic />}
+          </Suspense>
+        </SnackbarProvider>
       </ThemeProvider>
     </StyledEngineProvider>
   )
