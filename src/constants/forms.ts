@@ -17,6 +17,8 @@ export const FORM_TYPE_TEXT = 'text' as const
 export const FORM_TYPE_NUMBER = 'number' as const
 export const FORM_TYPE_PASSWORD = 'password' as const
 
+export const FORM_NAME_RECAPTCHA = 'recaptcha' as const
+
 export const FORM_SIGN_IN_FIELDS = [
   {
     label: FORM_LABEL_EMAIL,

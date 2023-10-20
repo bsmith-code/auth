@@ -13,7 +13,7 @@ interface IProps<T extends FieldValues> {
   form: UseFormReturn<T>
 }
 
-const InputTextField = <T extends FieldValues>({
+const InputText = <T extends FieldValues>({
   form,
   name,
   type = 'text',
@@ -40,4 +40,4 @@ const InputTextField = <T extends FieldValues>({
   )
 }
 
-export default InputTextField
+export default InputText

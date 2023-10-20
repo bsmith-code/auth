@@ -6,10 +6,10 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useLoginMutation } from 'store/server'
 
 // MUI
-import { Box, Button, Paper, Typography } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 
 // Components
-import InputTextField from 'components/InputTextField'
+import InputText from 'components/InputText'
 
 // Utils
 import { signInSchema } from 'utils'
@@ -49,7 +49,7 @@ const FormSignIn = () => {
 
       {FORM_SIGN_IN_FIELDS.map(field => (
         <Box mb={2} key={`field-${field.name}`}>
-          <InputTextField {...field} form={form} />
+          <InputText {...field} form={form} />
         </Box>
       ))}
 

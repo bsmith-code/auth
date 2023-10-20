@@ -9,7 +9,7 @@ import { useCreateUserMutation } from 'store/server'
 import { Box, Button, Typography } from '@mui/material'
 
 // Components
-import InputTextField from 'components/InputTextField'
+import InputText from 'components/InputText'
 
 // Utils
 import { signUpSchema } from 'utils'
@@ -23,6 +23,7 @@ import {
   FORM_NAME_FIRST_NAME,
   FORM_NAME_CONFIRM_PASSWORD
 } from 'constants/index'
+import InputReCaptcha from './InputRecaptcha'
 
 const FormSignUp = () => {
   const [createUser, { error, isLoading, isSuccess }] = useCreateUserMutation()
@@ -54,9 +55,12 @@ const FormSignUp = () => {
 
       {FORM_SIGN_UP_FIELDS.map(field => (
         <Box mb={2} key={`field-${field.name}`}>
-          <InputTextField {...field} form={form} />
+          <InputText {...field} form={form} />
         </Box>
       ))}
+      <Box mb={2}>
+        <InputReCaptcha form={form} />
+      </Box>
 
       <Button
         type="submit"
