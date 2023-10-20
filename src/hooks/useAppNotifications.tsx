@@ -1,13 +1,17 @@
+// Common
 import { useSnackbar } from 'notistack'
-import { removeNotification, selectNotifications } from 'store/client'
 import { useEffect } from 'react'
 import { shallowEqual } from 'react-redux'
-import { useAppDispatch, useAppSelector } from './useRedux'
+
+// Store
+import { removeNotification, selectNotifications } from 'store/client'
+
+// Hooks
+import { useAppDispatch, useAppSelector } from 'hooks/useRedux'
 
 export const useAppNotifications = () => {
   const dispatch = useAppDispatch()
-
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar()
+  const { enqueueSnackbar } = useSnackbar()
   const notifications = useAppSelector(selectNotifications, shallowEqual)
 
   useEffect(() => {
@@ -15,6 +19,7 @@ export const useAppNotifications = () => {
       if (message) {
         enqueueSnackbar(message, {
           key,
+          preventDuplicate: true,
           onExited: () => {
             dispatch(removeNotification(key))
           }
