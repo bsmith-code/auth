@@ -20,6 +20,7 @@ export const useAppNotifications = () => {
         enqueueSnackbar(message, {
           key,
           preventDuplicate: true,
+          autoHideDuration: 3000,
           onExited: () => {
             dispatch(removeNotification(key))
           }
