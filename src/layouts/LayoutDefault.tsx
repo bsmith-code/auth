@@ -7,6 +7,7 @@ import { Box, Paper } from '@mui/material'
 // Components
 import LayoutAppFooter from 'components/LayoutAppFooter'
 import LayoutAppHeader from 'components/LayoutAppHeader'
+import AppNotifications from 'components/AppNotifications'
 
 interface IProps {
   children: ReactNode
@@ -15,12 +16,14 @@ const LayoutDefault = ({ children }: IProps) => (
   <>
     <LayoutAppHeader />
     <Box
+      zIndex={10}
       width="100vw"
       display="flex"
+      position="relative"
       alignItems="center"
       flexDirection="column"
       justifyContent="center"
-      height="calc(100vh - 128px)"
+      height="calc(100vh - 64px - 48px)"
       sx={{
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -30,7 +33,6 @@ const LayoutDefault = ({ children }: IProps) => (
           top: 0,
           left: 0,
           right: 0,
-          zIndex: 0,
           bottom: 0,
           content: '""',
           display: 'block',
@@ -41,6 +43,7 @@ const LayoutDefault = ({ children }: IProps) => (
     >
       {children}
     </Box>
+    <AppNotifications />
     <LayoutAppFooter />
   </>
 )

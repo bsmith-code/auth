@@ -12,14 +12,16 @@ import LayoutDefault from 'layouts/LayoutDefault'
 const ViewPublic = () => {
   const [isSignIn, setIsSignIn] = useState(true)
 
+  const { Component, buttonText } = isSignIn
+    ? { Component: FormSignIn, buttonText: 'Sign up' }
+    : { Component: FormSignUp, buttonText: 'Sign in' }
+
   return (
     <LayoutDefault>
       <Box p={3} width="100%" maxWidth="400px" component={Paper} zIndex={500}>
         <>
-          {isSignIn ? <FormSignIn /> : <FormSignUp />}
-          <Button onClick={() => setIsSignIn(!isSignIn)}>
-            {isSignIn ? 'Sign up' : 'Sign in'}
-          </Button>
+          <Component />
+          <Button onClick={() => setIsSignIn(!isSignIn)}>{buttonText}</Button>
         </>
       </Box>
     </LayoutDefault>
