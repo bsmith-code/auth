@@ -10,6 +10,7 @@ import { Box, Button, Typography } from '@mui/material'
 
 // Components
 import InputText from 'components/InputText'
+import InputReCaptcha from 'components/InputRecaptcha'
 
 // Utils
 import { signUpSchema } from 'utils'
@@ -20,20 +21,24 @@ import {
   FORM_NAME_PASSWORD,
   FORM_NAME_LAST_NAME,
   FORM_SIGN_UP_FIELDS,
+  FORM_NAME_RECAPTCHA,
   FORM_NAME_FIRST_NAME,
   FORM_NAME_CONFIRM_PASSWORD
 } from 'constants/index'
-import InputReCaptcha from './InputRecaptcha'
+
+// Types
+import { IFormSignUp } from 'types'
 
 const FormSignUp = () => {
   const [createUser, { error, isLoading, isSuccess }] = useCreateUserMutation()
 
-  const form = useForm({
+  const form = useForm<IFormSignUp>({
     defaultValues: {
-      [FORM_NAME_FIRST_NAME]: '',
-      [FORM_NAME_LAST_NAME]: '',
       [FORM_NAME_EMAIL]: '',
       [FORM_NAME_PASSWORD]: '',
+      [FORM_NAME_RECAPTCHA]: '',
+      [FORM_NAME_LAST_NAME]: '',
+      [FORM_NAME_FIRST_NAME]: '',
       [FORM_NAME_CONFIRM_PASSWORD]: ''
     },
     resolver: yupResolver(signUpSchema)
@@ -58,7 +63,7 @@ const FormSignUp = () => {
           <InputText {...field} form={form} />
         </Box>
       ))}
-      <Box mb={2}>
+      <Box mb={3}>
         <InputReCaptcha form={form} />
       </Box>
 

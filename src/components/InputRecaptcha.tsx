@@ -8,8 +8,11 @@ import { FormHelperText } from '@mui/material'
 // Constants
 import { FORM_NAME_RECAPTCHA } from 'constants/index'
 
+// TYpes
+import { IFormSignUp } from 'types'
+
 interface IProps {
-  form: UseFormReturn
+  form: UseFormReturn<IFormSignUp>
 }
 
 const InputReCaptcha = ({ form }: IProps) => {
@@ -26,14 +29,14 @@ const InputReCaptcha = ({ form }: IProps) => {
   }
 
   return (
-    <fieldset>
+    <>
       <ReCAPTCHA
         onChange={handleReCaptchaChange}
         onExpired={handleReCaptchaExpired}
         sitekey={process.env.REACT_APP_RECAPTCHA_KEY ?? ''}
       />
       {!!error && <FormHelperText error>{error.message}</FormHelperText>}
-    </fieldset>
+    </>
   )
 }
 

@@ -1,0 +1,17 @@
+import {
+  FORM_NAME_EMAIL,
+  FORM_NAME_PASSWORD,
+  FORM_NAME_RECAPTCHA,
+  FORM_NAME_LAST_NAME,
+  FORM_NAME_FIRST_NAME,
+  FORM_NAME_CONFIRM_PASSWORD
+} from 'constants/index'
+
+export interface IFormSignUp {
+  [FORM_NAME_EMAIL]: string
+  [FORM_NAME_PASSWORD]: string
+  [FORM_NAME_LAST_NAME]: string
+  [FORM_NAME_RECAPTCHA]: string
+  [FORM_NAME_FIRST_NAME]: string
+  [FORM_NAME_CONFIRM_PASSWORD]: string
+}
