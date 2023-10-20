@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
 // Store
-import { useCreateUserMutation } from 'store'
+import { useCreateUserMutation } from 'store/server'
 
 // MUI
 import { Box, Button, Typography } from '@mui/material'
@@ -53,8 +53,8 @@ const FormSignUp = () => {
       </Box>
 
       {FORM_SIGN_UP_FIELDS.map(field => (
-        <Box mb={2}>
-          <InputTextField key={`field-${field.name}`} {...field} form={form} />
+        <Box mb={2} key={`field-${field.name}`}>
+          <InputTextField {...field} form={form} />
         </Box>
       ))}
 

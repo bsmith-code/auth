@@ -2,7 +2,7 @@
 import { lazy, Suspense } from 'react'
 
 // Store
-import { useGetUserQuery } from 'store'
+import { useGetUserQuery } from 'store/server'
 
 // MUI
 import { lightTheme } from 'styles'

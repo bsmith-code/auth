@@ -23,8 +23,13 @@ const reducers = {
   }
 }
 
-export const appSlice = createSlice({
-  name: 'app',
+const clientSlice = createSlice({
+  name: 'client',
   reducers,
   initialState
 })
+
+export const {
+  reducer: clientReducer,
+  actions: { updateNotifications }
+} = clientSlice

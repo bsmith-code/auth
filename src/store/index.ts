@@ -1,14 +1,18 @@
 // Common
-import { configureStore } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
-// Slices
+// Server
 import { authApi } from 'store/server'
+
+// Client
+import { clientReducer } from 'store/client'
 
 export const { reducer, middleware, reducerPath } = authApi
 
-const appReducer = {
+export const appReducer = combineReducers({
+  client: clientReducer,
   [reducerPath]: reducer
-}
+})
 
 const store = configureStore({
   reducer: appReducer,
@@ -18,4 +22,5 @@ const store = configureStore({
     getDefaultMiddleware().concat(middleware)
 })
 
+export const { dispatch, getState } = store
 export default store
