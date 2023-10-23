@@ -14,7 +14,7 @@ const authApi = createApi({
   endpoints: build => ({
     authenticateUser: build.mutation<IUser, Pick<IUser, 'email' | 'password'>>({
       query: body => ({
-        url: 'authenticate',
+        url: 'authenticateUser',
         method: 'POST',
         body
       })
@@ -24,13 +24,16 @@ const authApi = createApi({
       Omit<IUser, 'uuid' | 'createdAt' | 'updatedAt'>
     >({
       query: body => ({
-        url: 'register',
+        url: 'registerUser',
         method: 'POST',
         body
       })
     }),
     verifyUser: build.query<IUser, void>({
-      query: () => 'verify'
+      query: () => 'verifyUser'
+    }),
+    verifyEmail: build.query<void, string>({
+      query: id => `verifyEmail/${id}`
     })
   })
 })
@@ -41,6 +44,7 @@ export const {
   reducerPath: authReducerPath,
 
   useVerifyUserQuery,
+  useVerifyEmailQuery,
   useRegisterUserMutation,
   useAuthenticateUserMutation
 } = authApi
