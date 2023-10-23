@@ -3,7 +3,7 @@ import { lazy, Suspense } from 'react'
 import { SnackbarProvider } from 'notistack'
 
 // Store
-import { useGetUserQuery } from 'store/server'
+import { useVerifyUserQuery } from 'store/server'
 
 // MUI
 import { Grow } from '@mui/material'
@@ -12,10 +12,10 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
 
 // Components
-// import ViewLoader from 'views/ViewLoader'
+import ViewLoader from 'views/ViewLoader'
 
 const App = () => {
-  const { data: user } = useGetUserQuery()
+  const { data: user } = useVerifyUserQuery()
 
   const RouterPublic = lazy(() => import('routers/RouterPublic'))
   const RouterProtected = lazy(() => import('routers/RouterProtected'))
@@ -25,7 +25,7 @@ const App = () => {
       <ThemeProvider theme={lightTheme}>
         <CssBaseline />
         <SnackbarProvider maxSnack={4} TransitionComponent={Grow}>
-          <Suspense fallback="loading...">
+          <Suspense fallback={<ViewLoader />}>
             {user ? <RouterProtected /> : <RouterPublic />}
           </Suspense>
         </SnackbarProvider>

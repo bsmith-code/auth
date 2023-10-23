@@ -12,15 +12,14 @@ const authApi = createApi({
     credentials: 'include'
   }),
   endpoints: build => ({
-    login: build.mutation<IUser, Pick<IUser, 'email' | 'password'>>({
+    authenticateUser: build.mutation<IUser, Pick<IUser, 'email' | 'password'>>({
       query: body => ({
-        url: 'login',
+        url: 'authenticate',
         method: 'POST',
         body
-      }),
-      invalidatesTags: ['IUser']
+      })
     }),
-    createUser: build.mutation<
+    registerUser: build.mutation<
       IUser,
       Omit<IUser, 'uuid' | 'createdAt' | 'updatedAt'>
     >({
@@ -30,9 +29,8 @@ const authApi = createApi({
         body
       })
     }),
-    getUser: build.query<IUser, void>({
-      query: () => 'status',
-      providesTags: ['IUser']
+    verifyUser: build.query<IUser, void>({
+      query: () => 'verify'
     })
   })
 })
@@ -41,7 +39,8 @@ export const {
   reducer: authReducer,
   middleware: authMiddleware,
   reducerPath: authReducerPath,
-  useGetUserQuery,
-  useLoginMutation,
-  useCreateUserMutation
+
+  useVerifyUserQuery,
+  useRegisterUserMutation,
+  useAuthenticateUserMutation
 } = authApi

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
 // Store
-import { useLoginMutation } from 'store/server'
+import { useAuthenticateUserMutation } from 'store/server'
 
 // MUI
 import { Box, Button, Typography } from '@mui/material'
@@ -22,7 +22,7 @@ import {
 } from 'constants/index'
 
 const FormSignIn = () => {
-  const [login, { error, isLoading, isSuccess }] = useLoginMutation()
+  const [login, { error, isLoading, isSuccess }] = useAuthenticateUserMutation()
 
   const form = useForm({
     mode: 'onChange',
