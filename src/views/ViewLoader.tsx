@@ -1,10 +1,5 @@
 import { Box } from '@mui/material'
-import LayoutDefault from 'layouts/LayoutDefault'
 
-const ViewLoader = () => (
-  <LayoutDefault>
-    <Box p={8}>Loading...</Box>
-  </LayoutDefault>
-)
+const ViewLoader = () => <Box p={8}>Loading...</Box>
 
 export default ViewLoader

@@ -12,21 +12,21 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
 
 // Components
-import ViewLoader from 'views/ViewLoader'
+// import ViewLoader from 'views/ViewLoader'
 
 const App = () => {
   const { data: user } = useGetUserQuery()
 
-  const ViewPublic = lazy(() => import('views/ViewPublic'))
-  const ViewProtected = lazy(() => import('views/ViewProtected'))
+  const RouterPublic = lazy(() => import('routers/RouterPublic'))
+  const RouterProtected = lazy(() => import('routers/RouterProtected'))
 
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={lightTheme}>
         <CssBaseline />
         <SnackbarProvider maxSnack={4} TransitionComponent={Grow}>
-          <Suspense fallback={<ViewLoader />}>
-            {user ? <ViewProtected /> : <ViewPublic />}
+          <Suspense fallback="loading...">
+            {user ? <RouterProtected /> : <RouterPublic />}
           </Suspense>
         </SnackbarProvider>
       </ThemeProvider>

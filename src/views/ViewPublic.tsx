@@ -21,14 +21,12 @@ const ViewPublic = () => {
   }
 
   return (
-    <LayoutDefault>
-      <Box p={3} width="100%" maxWidth="400px" component={Paper} zIndex={500}>
-        <>
-          <Component onToggleForm={handleToggleForm} />
-          <Button onClick={handleToggleForm}>{buttonText}</Button>
-        </>
-      </Box>
-    </LayoutDefault>
+    <Box p={3} width="100%" maxWidth="400px" component={Paper} zIndex={500}>
+      <>
+        <Component onToggleForm={handleToggleForm} />
+        <Button onClick={handleToggleForm}>{buttonText}</Button>
+      </>
+    </Box>
   )
 }
 
