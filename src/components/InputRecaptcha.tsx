@@ -35,7 +35,11 @@ const InputReCaptcha = ({ form }: IProps) => {
         onExpired={handleReCaptchaExpired}
         sitekey={process.env.REACT_APP_RECAPTCHA_KEY ?? ''}
       />
-      {!!error && <FormHelperText error>{error.message}</FormHelperText>}
+      {!!error && (
+        <FormHelperText error sx={{ ml: 14 / 8 }}>
+          {error.message}
+        </FormHelperText>
+      )}
     </>
   )
 }

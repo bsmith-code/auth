@@ -1,4 +1,5 @@
 // Common
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
@@ -29,8 +30,11 @@ import {
 // Types
 import { IFormSignUp } from 'types'
 
-const FormSignUp = () => {
-  const [createUser, { error, isLoading, isSuccess }] = useCreateUserMutation()
+interface IProps {
+  onToggleForm: () => void
+}
+const FormSignUp = ({ onToggleForm }: IProps) => {
+  const [createUser, { isLoading, isSuccess }] = useCreateUserMutation()
 
   const form = useForm<IFormSignUp>({
     defaultValues: {
@@ -47,6 +51,12 @@ const FormSignUp = () => {
   const handleSubmit = form.handleSubmit(async user => {
     await createUser(user)
   })
+
+  useEffect(() => {
+    if (isSuccess) {
+      onToggleForm()
+    }
+  }, [isSuccess])
 
   return (
     <form
@@ -69,8 +79,9 @@ const FormSignUp = () => {
 
       <Button
         type="submit"
-        variant="contained"
         disableElevation
+        variant="contained"
+        disabled={isLoading}
         sx={{ color: 'white', float: 'right' }}
       >
         Sign up

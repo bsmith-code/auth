@@ -16,12 +16,16 @@ const ViewPublic = () => {
     ? { Component: FormSignIn, buttonText: 'Sign up' }
     : { Component: FormSignUp, buttonText: 'Sign in' }
 
+  const handleToggleForm = () => {
+    setIsSignIn(prev => !prev)
+  }
+
   return (
     <LayoutDefault>
       <Box p={3} width="100%" maxWidth="400px" component={Paper} zIndex={500}>
         <>
-          <Component />
-          <Button onClick={() => setIsSignIn(!isSignIn)}>{buttonText}</Button>
+          <Component onToggleForm={handleToggleForm} />
+          <Button onClick={handleToggleForm}>{buttonText}</Button>
         </>
       </Box>
     </LayoutDefault>
