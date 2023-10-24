@@ -1,8 +1,12 @@
 // Common
+import { Action } from '@reduxjs/toolkit'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
+// Store
+import { createNotification } from 'store/client'
+
 // Types
-import { IUser } from 'types'
+import { IUser, TAppListenerAPI } from 'types'
 
 const authApi = createApi({
   reducerPath: 'contact',
@@ -40,6 +44,7 @@ const authApi = createApi({
 
 export const {
   reducer: authReducer,
+  endpoints: authEndpoints,
   middleware: authMiddleware,
   reducerPath: authReducerPath,
 
@@ -48,3 +53,18 @@ export const {
   useLoginMutation,
   useRegisterMutation
 } = authApi
+
+export const authListeners = [
+  {
+    matcher: authEndpoints.register.matchFulfilled,
+    effect: (_: Action, { dispatch }: TAppListenerAPI) => {
+      dispatch(createNotification('Please verify your email.'))
+    }
+  },
+  {
+    matcher: authEndpoints.verify.matchFulfilled,
+    effect: (_: Action, { dispatch }: TAppListenerAPI) => {
+      dispatch(createNotification('User verified.'))
+    }
+  }
+]

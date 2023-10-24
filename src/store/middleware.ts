@@ -1,17 +1,24 @@
 // Common
-import { isAnyOf, isRejected, createListenerMiddleware } from '@reduxjs/toolkit'
+import {
+  isAnyOf,
+  AnyAction,
+  isRejected,
+  createListenerMiddleware
+} from '@reduxjs/toolkit'
 
 // Store
 import { createNotification } from 'store/client'
+import { authEndpoints, authListeners } from 'store/server'
 
 // Types
 import { TAppListenerAPI, TAppStartListening } from 'types'
 
-const ignoredActions = isAnyOf()
+const ignoredActions = isAnyOf(authEndpoints.session.matchRejected)
 
 export const exceptionListeners = [
   {
-    matcher: isRejected,
+    matcher: (action: AnyAction) =>
+      ignoredActions(action) ? false : isRejected(action),
     effect: (
       action: {
         payload?: { data: { message: string } }
@@ -32,7 +39,7 @@ export const listenerMiddleware = createListenerMiddleware()
 const startAppListening =
   listenerMiddleware.startListening as TAppStartListening
 
-const listeners = [...exceptionListeners]
+const listeners = [...exceptionListeners, ...authListeners]
 
 listeners.forEach(listener => {
   startAppListening(listener as never) // TODO: figure out type

@@ -11,14 +11,20 @@ import FormSignUp from 'components/FormSignUp'
 import { useVerifyQuery } from 'store/server'
 
 const ViewPublic = () => {
-  const [searchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams()
 
   const [isSignIn, setIsSignIn] = useState(true)
 
-  const verifyEmailId = searchParams.get('verifyEmail') ?? ''
+  const verifyEmailId = searchParams.get('verifyUser') ?? ''
   const { isSuccess } = useVerifyQuery(verifyEmailId, {
     skip: !verifyEmailId
   })
+
+  useEffect(() => {
+    if (isSuccess) {
+      setSearchParams('')
+    }
+  }, [isSuccess])
 
   const { Component, buttonText } = isSignIn
     ? { Component: FormSignIn, buttonText: 'Sign up' }
