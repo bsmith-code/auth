@@ -21,7 +21,8 @@ const authApi = createApi({
         url: 'login',
         method: 'POST',
         body
-      })
+      }),
+      invalidatesTags: result => (result ? ['IUser'] : [])
     }),
     register: build.mutation<
       IUser,
@@ -34,7 +35,8 @@ const authApi = createApi({
       })
     }),
     session: build.query<IUser, void>({
-      query: () => 'session'
+      query: () => 'session',
+      providesTags: ['IUser']
     }),
     verify: build.query<void, string>({
       query: id => `verify/${id}`
