@@ -8,7 +8,7 @@ import { Box, Button, Paper } from '@mui/material'
 // Components
 import FormSignIn from 'components/FormSignIn'
 import FormSignUp from 'components/FormSignUp'
-import { useVerifyEmailQuery } from 'store/server'
+import { useVerifyQuery } from 'store/server'
 
 const ViewPublic = () => {
   const [searchParams] = useSearchParams()
@@ -16,7 +16,7 @@ const ViewPublic = () => {
   const [isSignIn, setIsSignIn] = useState(true)
 
   const verifyEmailId = searchParams.get('verifyEmail') ?? ''
-  const { isSuccess } = useVerifyEmailQuery(verifyEmailId, {
+  const { isSuccess } = useVerifyQuery(verifyEmailId, {
     skip: !verifyEmailId
   })
 

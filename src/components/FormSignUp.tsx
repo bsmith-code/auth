@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
 // Store
-import { useRegisterUserMutation } from 'store/server'
+import { useRegisterMutation } from 'store/server'
 
 // MUI
 import { Box, Button, Typography } from '@mui/material'
@@ -34,7 +34,7 @@ interface IProps {
   onToggleForm: () => void
 }
 const FormSignUp = ({ onToggleForm }: IProps) => {
-  const [createUser, { isLoading, isSuccess }] = useRegisterUserMutation()
+  const [createUser, { isLoading, isSuccess }] = useRegisterMutation()
 
   const form = useForm<IFormSignUp>({
     defaultValues: {

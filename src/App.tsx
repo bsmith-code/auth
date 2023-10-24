@@ -3,7 +3,7 @@ import { lazy, Suspense } from 'react'
 import { SnackbarProvider } from 'notistack'
 
 // Store
-import { useVerifyUserQuery } from 'store/server'
+import { useSessionQuery } from 'store/server'
 
 // MUI
 import { Grow } from '@mui/material'
@@ -15,7 +15,7 @@ import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
 import ViewLoader from 'views/ViewLoader'
 
 const App = () => {
-  const { data: user } = useVerifyUserQuery()
+  const { data: user } = useSessionQuery()
 
   const RouterPublic = lazy(() => import('routers/RouterPublic'))
   const RouterProtected = lazy(() => import('routers/RouterProtected'))
