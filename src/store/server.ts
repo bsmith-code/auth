@@ -6,10 +6,10 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { createNotification } from 'store/client'
 
 // Types
-import { IUser, TAppListenerAPI } from 'types'
+import { IRootState, IUser, TAppListenerAPI } from 'types'
 
 const authApi = createApi({
-  reducerPath: 'contact',
+  reducerPath: 'auth',
   tagTypes: ['IUser'],
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.REACT_APP_API_BASE_URL ?? ''}/v1/auth`,
@@ -23,6 +23,12 @@ const authApi = createApi({
         body
       }),
       invalidatesTags: result => (result ? ['IUser'] : [])
+    }),
+    logout: build.mutation<void, void>({
+      query: () => ({
+        url: 'logout',
+        method: 'POST'
+      })
     }),
     register: build.mutation<
       IUser,
@@ -45,6 +51,7 @@ const authApi = createApi({
 })
 
 export const {
+  util: authUtil,
   reducer: authReducer,
   endpoints: authEndpoints,
   middleware: authMiddleware,
@@ -53,10 +60,17 @@ export const {
   useVerifyQuery,
   useSessionQuery,
   useLoginMutation,
+  useLogoutMutation,
   useRegisterMutation
 } = authApi
 
 export const authListeners = [
+  {
+    matcher: authEndpoints.logout.matchFulfilled,
+    effect: (_: Action, { dispatch }: TAppListenerAPI) => {
+      dispatch(authUtil.resetApiState())
+    }
+  },
   {
     matcher: authEndpoints.register.matchFulfilled,
     effect: (_: Action, { dispatch }: TAppListenerAPI) => {
@@ -70,3 +84,6 @@ export const authListeners = [
     }
   }
 ]
+
+export const selectUser = (state: IRootState) =>
+  authEndpoints.session.select()(state).data

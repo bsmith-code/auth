@@ -1,8 +1,13 @@
+// Common
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
-import App from 'App.jsx'
+
+// Store
 import store from 'store'
+
+// Components
+import App from 'App.jsx'
 
 ReactDOM.createRoot(document.querySelector('#root') as Element).render(
   <React.StrictMode>
