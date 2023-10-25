@@ -39,6 +39,7 @@ const LayoutDefault = ({ children }: IProps) => {
             left: 0,
             right: 0,
             bottom: 0,
+            zIndex: '-1',
             content: '""',
             display: 'block',
             position: 'absolute',
