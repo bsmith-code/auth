@@ -26,11 +26,11 @@ const myApps = [
     url: process.env.REACT_APP_PORTFOLIO_BASE_URL
   },
   {
-    title: 'Chat',
+    title: 'Chat (coming soon)',
     url: ''
   },
   {
-    title: 'Games',
+    title: 'Games (coming soon)',
     url: ''
   }
 ]
