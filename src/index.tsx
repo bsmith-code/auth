@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import store from 'store'
 
 // Components
-import App from 'App.jsx'
+import App from 'App'
 
 ReactDOM.createRoot(document.querySelector('#root') as Element).render(
   <React.StrictMode>

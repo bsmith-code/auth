@@ -5,10 +5,12 @@ import { useSearchParams } from 'react-router-dom'
 // MUI
 import { Box, Button, Paper } from '@mui/material'
 
+// Hooks
+import { useVerifyQuery } from 'store/server'
+
 // Components
 import FormSignIn from 'components/FormSignIn'
 import FormSignUp from 'components/FormSignUp'
-import { useVerifyQuery } from 'store/server'
 
 const ViewPublic = () => {
   const [searchParams, setSearchParams] = useSearchParams()
