@@ -12,6 +12,9 @@ import { useVerifyQuery } from 'store/server'
 import FormUserLogin from 'components/FormUserLogin'
 import FormUserRegister from 'components/FormUserRegister'
 
+// Styles
+import { StyledAbsoluteCenter } from 'styles'
+
 const ViewPublic = () => {
   const [searchParams, setSearchParams] = useSearchParams()
 
@@ -37,12 +40,14 @@ const ViewPublic = () => {
   }
 
   return (
-    <Box p={3} width="100%" maxWidth="400px" component={Paper} zIndex={500}>
-      <>
-        <Component onToggleForm={handleToggleForm} />
-        <Button onClick={handleToggleForm}>{buttonText}</Button>
-      </>
-    </Box>
+    <StyledAbsoluteCenter>
+      <Box p={3} width="100%" maxWidth="400px" component={Paper} zIndex={500}>
+        <>
+          <Component onToggleForm={handleToggleForm} />
+          <Button onClick={handleToggleForm}>{buttonText}</Button>
+        </>
+      </Box>
+    </StyledAbsoluteCenter>
   )
 }
 
