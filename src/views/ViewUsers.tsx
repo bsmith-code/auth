@@ -1,31 +1,96 @@
 // MUI
-import { Box, Typography } from '@mui/material'
-import { DataGrid, GridColDef } from '@mui/x-data-grid'
+import { Box, Typography, Button } from '@mui/material'
+import AddIcon from '@mui/icons-material/Add'
+import EditIcon from '@mui/icons-material/Edit'
+import DeleteIcon from '@mui/icons-material/DeleteOutlined'
+import SaveIcon from '@mui/icons-material/Save'
+import CancelIcon from '@mui/icons-material/Close'
+import {
+  DataGrid,
+  GridColDef,
+  GridRowsProp,
+  GridRowModesModel,
+  GridRowModes,
+  GridToolbarContainer,
+  GridActionsCellItem,
+  GridEventListener,
+  GridRowId,
+  GridRowModel,
+  GridRowEditStopReasons
+} from '@mui/x-data-grid'
 import { mockUsers } from '__mocks__/users'
+import { useState } from 'react'
 
 const ViewUsers = () => {
   const myUsers = []
+  const [rowModesModel, setRowModesModel] = useState<GridRowModesModel>({})
 
   const columns: GridColDef[] = [
     {
       field: 'firstName',
       headerName: 'First Name',
-      width: 1600 / 5
+      width: 300
     },
     {
       field: 'lastName',
       headerName: 'Last Name',
-      width: 1600 / 5
+      width: 300
     },
     {
       field: 'email',
       headerName: 'Email',
-      width: 1600 / 5
+      width: 300
     },
     {
       field: 'roles',
       headerName: 'Roles',
-      width: 1600 / 5
+      width: 560
+    },
+    {
+      field: 'actions',
+      type: 'actions',
+      headerName: 'Actions',
+      width: 100,
+      cellClassName: 'actions',
+      getActions: ({ id }) => {
+        const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit
+
+        if (isInEditMode) {
+          return [
+            <GridActionsCellItem
+              icon={<SaveIcon />}
+              label="Save"
+              sx={{
+                color: 'primary.main'
+              }}
+              // onClick={handleSaveClick(id)}
+            />,
+            <GridActionsCellItem
+              icon={<CancelIcon />}
+              label="Cancel"
+              className="textPrimary"
+              // onClick={handleCancelClick(id)}
+              color="inherit"
+            />
+          ]
+        }
+
+        return [
+          <GridActionsCellItem
+            icon={<EditIcon />}
+            label="Edit"
+            className="textPrimary"
+            // onClick={handleEditClick(id)}
+            color="inherit"
+          />,
+          <GridActionsCellItem
+            icon={<DeleteIcon />}
+            label="Delete"
+            // onClick={handleDeleteClick(id)}
+            color="inherit"
+          />
+        ]
+      }
     }
   ]
 
