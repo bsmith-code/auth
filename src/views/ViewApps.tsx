@@ -44,11 +44,9 @@ const ViewApps = () => (
     flexDirection="column"
     justifyContent="center"
   >
-    <Box mb={4}>
-      <Typography variant="h3" component="h1">
-        My Apps
-      </Typography>
-    </Box>
+    <Typography variant="h3" component="h1" mb={4}>
+      My Apps
+    </Typography>
 
     <Grid container spacing={4}>
       {myApps.map(({ url, title }) => (

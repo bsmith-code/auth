@@ -1,4 +1,5 @@
 // Common
+import { ReactNode } from 'react'
 import { Routes, BrowserRouter, Route, Navigate } from 'react-router-dom'
 
 // Hooks
@@ -6,9 +7,8 @@ import { useIdleSession } from 'hooks/useIdleSession'
 
 // Components
 import ViewApps from 'views/ViewApps'
-import LayoutDefault from 'layouts/LayoutDefault'
-import { ReactNode } from 'react'
 import ViewUsers from 'views/ViewUsers'
+import LayoutDefault from 'layouts/LayoutDefault'
 
 const PreparedView = ({ view }: { view: ReactNode }) => (
   <LayoutDefault>{view}</LayoutDefault>

@@ -9,10 +9,10 @@ import { FormHelperText } from '@mui/material'
 import { FORM_NAME_RECAPTCHA } from 'constants/index'
 
 // TYpes
-import { IFormSignUp } from 'types'
+import { IUserRegister } from 'types'
 
 interface IProps {
-  form: UseFormReturn<IFormSignUp>
+  form: UseFormReturn<IUserRegister>
 }
 
 const InputReCaptcha = ({ form }: IProps) => {
