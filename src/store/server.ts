@@ -6,7 +6,13 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { createNotification } from 'store/client'
 
 // Types
-import { IRootState, IUser, TAppListenerAPI } from 'types'
+import {
+  IRootState,
+  IUser,
+  IUserLogin,
+  IUserRegister,
+  TAppListenerAPI
+} from 'types'
 
 const authApi = createApi({
   reducerPath: 'auth',
@@ -16,7 +22,7 @@ const authApi = createApi({
     credentials: 'include'
   }),
   endpoints: build => ({
-    login: build.mutation<IUser, Pick<IUser, 'email' | 'password'>>({
+    login: build.mutation<IUser, IUserLogin>({
       query: body => ({
         url: 'login',
         method: 'POST',
@@ -30,10 +36,7 @@ const authApi = createApi({
         method: 'POST'
       })
     }),
-    register: build.mutation<
-      IUser,
-      Omit<IUser, 'uuid' | 'createdAt' | 'updatedAt'>
-    >({
+    register: build.mutation<IUser, IUserRegister>({
       query: body => ({
         url: 'register',
         method: 'POST',

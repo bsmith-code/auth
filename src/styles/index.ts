@@ -1,4 +1,5 @@
-import { createTheme } from '@mui/material'
+import styled from '@emotion/styled'
+import { Box, createTheme } from '@mui/material'
 
 export const lightTheme = createTheme({
   typography: {
@@ -15,3 +16,11 @@ export const lightTheme = createTheme({
     }
   }
 })
+
+export const StyledAbsoluteCenter = styled(Box)`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+`

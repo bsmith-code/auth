@@ -1,4 +1,5 @@
 import { Box, Grid, Link, Paper, Typography, styled } from '@mui/material'
+import { StyledAbsoluteCenter } from 'styles'
 
 const StyledGridItem = styled(Paper)(({ theme }) => ({
   height: '100px',
@@ -36,19 +37,10 @@ const myApps = [
 ]
 
 const ViewApps = () => (
-  <Box
-    width="100%"
-    display="flex"
-    maxWidth="600px"
-    alignItems="center"
-    flexDirection="column"
-    justifyContent="center"
-  >
-    <Box mb={4}>
-      <Typography variant="h3" component="h1">
-        My Apps
-      </Typography>
-    </Box>
+  <StyledAbsoluteCenter margin="0 auto" maxWidth="600px">
+    <Typography variant="h3" component="h1" mb={4}>
+      My Apps
+    </Typography>
 
     <Grid container spacing={4}>
       {myApps.map(({ url, title }) => (
@@ -61,7 +53,7 @@ const ViewApps = () => (
         </Grid>
       ))}
     </Grid>
-  </Box>
+  </StyledAbsoluteCenter>
 )
 
 export default ViewApps

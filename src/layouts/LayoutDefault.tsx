@@ -23,11 +23,7 @@ const LayoutDefault = ({ children }: IProps) => {
       <Box
         zIndex={10}
         width="100vw"
-        display="flex"
         position="relative"
-        alignItems="center"
-        flexDirection="column"
-        justifyContent="center"
         height="calc(100vh - 64px - 48px)"
         sx={{
           backgroundSize: 'cover',
@@ -47,7 +43,9 @@ const LayoutDefault = ({ children }: IProps) => {
           }
         }}
       >
-        {children}
+        <Box height="100%" overflow="auto" py={3}>
+          {children}
+        </Box>
       </Box>
       <LayoutAppFooter />
     </>

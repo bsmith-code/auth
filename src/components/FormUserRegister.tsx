@@ -28,15 +28,15 @@ import {
 } from 'constants/index'
 
 // Types
-import { IFormSignUp } from 'types'
+import { IUserRegister } from 'types'
 
 interface IProps {
   onToggleForm: () => void
 }
-const FormSignUp = ({ onToggleForm }: IProps) => {
+const FormUserRegister = ({ onToggleForm }: IProps) => {
   const [createUser, { isLoading, isSuccess }] = useRegisterMutation()
 
-  const form = useForm<IFormSignUp>({
+  const form = useForm<IUserRegister>({
     defaultValues: {
       [FORM_NAME_EMAIL]: '',
       [FORM_NAME_PASSWORD]: '',
@@ -90,4 +90,4 @@ const FormSignUp = ({ onToggleForm }: IProps) => {
   )
 }
 
-export default FormSignUp
+export default FormUserRegister

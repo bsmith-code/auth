@@ -9,8 +9,11 @@ import { Box, Button, Paper } from '@mui/material'
 import { useVerifyQuery } from 'store/server'
 
 // Components
-import FormSignIn from 'components/FormSignIn'
-import FormSignUp from 'components/FormSignUp'
+import FormUserLogin from 'components/FormUserLogin'
+import FormUserRegister from 'components/FormUserRegister'
+
+// Styles
+import { StyledAbsoluteCenter } from 'styles'
 
 const ViewPublic = () => {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -29,20 +32,22 @@ const ViewPublic = () => {
   }, [isSuccess])
 
   const { Component, buttonText } = isSignIn
-    ? { Component: FormSignIn, buttonText: 'Sign up' }
-    : { Component: FormSignUp, buttonText: 'Sign in' }
+    ? { Component: FormUserLogin, buttonText: 'Sign up' }
+    : { Component: FormUserRegister, buttonText: 'Sign in' }
 
   const handleToggleForm = () => {
     setIsSignIn(prev => !prev)
   }
 
   return (
-    <Box p={3} width="100%" maxWidth="400px" component={Paper} zIndex={500}>
-      <>
-        <Component onToggleForm={handleToggleForm} />
-        <Button onClick={handleToggleForm}>{buttonText}</Button>
-      </>
-    </Box>
+    <StyledAbsoluteCenter>
+      <Box p={3} width="100%" maxWidth="400px" component={Paper} zIndex={500}>
+        <>
+          <Component onToggleForm={handleToggleForm} />
+          <Button onClick={handleToggleForm}>{buttonText}</Button>
+        </>
+      </Box>
+    </StyledAbsoluteCenter>
   )
 }
 
