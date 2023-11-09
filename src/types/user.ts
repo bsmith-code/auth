@@ -3,7 +3,19 @@ export interface IUser {
   firstName: string
   lastName: string
   email: string
+  permissions: string[]
+}
+
+export interface IUserLogin {
+  email: string
   password: string
-  createdAt: string
-  updatedAt: string
+}
+
+export interface IUserRegister {
+  email: string
+  password: string
+  lastName: string
+  recaptcha: string
+  firstName: string
+  confirmPassword: string
 }

@@ -9,8 +9,8 @@ import { Box, Button, Paper } from '@mui/material'
 import { useVerifyQuery } from 'store/server'
 
 // Components
-import FormSignIn from 'components/FormSignIn'
-import FormSignUp from 'components/FormSignUp'
+import FormUserLogin from 'components/FormUserLogin'
+import FormUserRegister from 'components/FormUserRegister'
 
 const ViewPublic = () => {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -29,8 +29,8 @@ const ViewPublic = () => {
   }, [isSuccess])
 
   const { Component, buttonText } = isSignIn
-    ? { Component: FormSignIn, buttonText: 'Sign up' }
-    : { Component: FormSignUp, buttonText: 'Sign in' }
+    ? { Component: FormUserLogin, buttonText: 'Sign up' }
+    : { Component: FormUserRegister, buttonText: 'Sign in' }
 
   const handleToggleForm = () => {
     setIsSignIn(prev => !prev)

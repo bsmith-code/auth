@@ -21,7 +21,7 @@ import {
   FORM_SIGN_IN_FIELDS
 } from 'constants/index'
 
-const FormSignIn = () => {
+const FormUserLogin = () => {
   const [login, { error, isLoading, isSuccess }] = useLoginMutation()
 
   const form = useForm({
@@ -65,4 +65,4 @@ const FormSignIn = () => {
   )
 }
 
-export default FormSignIn
+export default FormUserLogin
