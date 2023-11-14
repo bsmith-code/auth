@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
-import { Box, createTheme } from '@mui/material'
+import Box from '@mui/material/Box'
+import { createTheme } from '@mui/material/styles'
 
 export const lightTheme = createTheme({
   typography: {

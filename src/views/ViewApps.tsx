@@ -1,4 +1,8 @@
-import { Box, Grid, Link, Paper, Typography, styled } from '@mui/material'
+import Grid from '@mui/material/Grid'
+import Link from '@mui/material/Link'
+import Paper from '@mui/material/Paper'
+import Typography from '@mui/material/Typography'
+import { styled } from '@mui/material/styles'
 import { StyledAbsoluteCenter } from 'styles'
 
 const StyledGridItem = styled(Paper)(({ theme }) => ({

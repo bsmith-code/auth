@@ -2,7 +2,7 @@
 import { ReactNode } from 'react'
 
 // MUI
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 
 // Hooks
 import { useAppNotifications } from 'hooks/useAppNotifications'
