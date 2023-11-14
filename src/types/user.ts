@@ -1,13 +1,9 @@
-export interface IUserRole {
-  uuid: string
-  permissions: string[]
-}
 export interface IUser {
   uuid: string
   firstName: string
   lastName: string
   email: string
-  roles: IUserRole[]
+  permissions: string[]
 }
 
 export interface IUserLogin {

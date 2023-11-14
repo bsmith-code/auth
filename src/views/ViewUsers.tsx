@@ -28,15 +28,28 @@ const ViewUsers = () => {
   const myUsers = []
   const [rowModesModel, setRowModesModel] = useState<GridRowModesModel>({})
 
+  const handleEditClick = (id: GridRowId) => {
+    setRowModesModel(prev => ({ ...prev, [id]: { mode: GridRowModes.Edit } }))
+  }
+
+  const handleCancelClick = (id: GridRowId) => {
+    setRowModesModel({
+      ...rowModesModel,
+      [id]: { mode: GridRowModes.View, ignoreModifications: true }
+    })
+  }
+
   const columns: GridColDef[] = [
     {
       field: 'firstName',
       headerName: 'First Name',
+      editable: true,
       width: 300
     },
     {
       field: 'lastName',
       headerName: 'Last Name',
+      editable: true,
       width: 300
     },
     {
@@ -45,8 +58,12 @@ const ViewUsers = () => {
       width: 300
     },
     {
-      field: 'roles',
-      headerName: 'Roles',
+      field: 'permissions',
+      headerName: 'Permissions',
+      editable: true,
+      valueFormatter: ({ value }: { value: string[] }) =>
+        value ? value.join(', ') : '',
+
       width: 560
     },
     {
@@ -72,7 +89,7 @@ const ViewUsers = () => {
               icon={<CancelIcon />}
               label="Cancel"
               className="textPrimary"
-              // onClick={handleCancelClick(id)}
+              onClick={() => handleCancelClick(id)}
               color="inherit"
             />
           ]
@@ -83,7 +100,7 @@ const ViewUsers = () => {
             icon={<EditIcon />}
             label="Edit"
             className="textPrimary"
-            // onClick={handleEditClick(id)}
+            onClick={() => handleEditClick(id)}
             color="inherit"
           />,
           <GridActionsCellItem
@@ -108,6 +125,7 @@ const ViewUsers = () => {
           rows={mockUsers}
           columns={columns}
           editMode="row"
+          rowModesModel={rowModesModel}
           initialState={{
             pagination: {
               paginationModel: {

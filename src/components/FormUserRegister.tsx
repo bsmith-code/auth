@@ -27,7 +27,7 @@ import {
   FORM_NAME_RECAPTCHA,
   FORM_NAME_FIRST_NAME,
   FORM_NAME_CONFIRM_PASSWORD
-} from 'constants/index'
+} from 'constants/forms'
 
 // Types
 import { IUserRegister } from 'types'

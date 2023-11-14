@@ -21,7 +21,7 @@ import {
   FORM_NAME_EMAIL,
   FORM_NAME_PASSWORD,
   FORM_SIGN_IN_FIELDS
-} from 'constants/index'
+} from 'constants/forms'
 
 const FormUserLogin = () => {
   const [login, { error, isLoading, isSuccess }] = useLoginMutation()

@@ -6,7 +6,7 @@ import { useController, UseFormReturn } from 'react-hook-form'
 import FormHelperText from '@mui/material/FormHelperText'
 
 // Constants
-import { FORM_NAME_RECAPTCHA } from 'constants/index'
+import { FORM_NAME_RECAPTCHA } from 'constants/forms'
 
 // TYpes
 import { IUserRegister } from 'types'
