@@ -49,6 +49,16 @@ const authApi = createApi({
     }),
     verify: build.query<void, string>({
       query: id => `verify/${id}`
+    }),
+    getUsers: build.query<IUser[], void>({
+      query: () => `users`
+    }),
+    updateUser: build.mutation<IUser, IUser>({
+      query: ({ uuid, ...restUser }) => ({
+        url: `users/${uuid}`,
+        method: 'PUT',
+        body: restUser
+      })
     })
   })
 })
@@ -63,8 +73,10 @@ export const {
   useVerifyQuery,
   useSessionQuery,
   useLoginMutation,
+  useGetUsersQuery,
   useLogoutMutation,
-  useRegisterMutation
+  useRegisterMutation,
+  useUpdateUserMutation
 } = authApi
 
 export const authListeners = [

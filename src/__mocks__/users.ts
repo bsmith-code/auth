@@ -5,5 +5,5 @@ export const mockUsers: IUser[] = Array.from({ length: 20 }).map((_, idx) => ({
   firstName: `First Name ${idx}`,
   lastName: `Last Name ${idx}`,
   email: `email+${idx}@email.com`,
-  permissions: ['test', 'test2', 'test3']
+  permissions: ['test1', 'test2', 'test3']
 }))

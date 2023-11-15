@@ -1,12 +1,14 @@
 // MUI
 import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
 import AddIcon from '@mui/icons-material/Add'
+import MenuItem from '@mui/material/MenuItem'
 import EditIcon from '@mui/icons-material/Edit'
-import DeleteIcon from '@mui/icons-material/DeleteOutlined'
-import SaveIcon from '@mui/icons-material/Save'
+import Typography from '@mui/material/Typography'
+import CheckIcon from '@mui/icons-material/Check'
 import CancelIcon from '@mui/icons-material/Close'
+import DeleteIcon from '@mui/icons-material/DeleteOutlined'
 import {
   DataGrid,
   GridColDef,
@@ -18,25 +20,67 @@ import {
   GridEventListener,
   GridRowId,
   GridRowModel,
-  GridRowEditStopReasons
+  GridRowEditStopReasons,
+  useGridApiContext,
+  GridRenderEditCellParams
 } from '@mui/x-data-grid'
 
 import { mockUsers } from '__mocks__/users'
 import { useState } from 'react'
+import { useGetUsersQuery } from 'store/server'
+
+const CustomEditComponent = ({
+  id,
+  value,
+  field
+}: GridRenderEditCellParams<any, string[]>) => {
+  const apiRef = useGridApiContext()
+
+  const handleChange = (event: SelectChangeEvent<string[]>) => {
+    const eventValue = event.target.value as string[]
+
+    void apiRef.current.setEditCellValue({
+      id,
+      field,
+      value: eventValue
+    })
+  }
+
+  return (
+    <Select
+      multiple
+      value={value}
+      onChange={handleChange}
+      sx={{ width: '100%' }}
+    >
+      {['test1', 'test2', 'test3'].map(option => (
+        <MenuItem key={option} value={option}>
+          {option}
+        </MenuItem>
+      ))}
+    </Select>
+  )
+}
 
 const ViewUsers = () => {
-  const myUsers = []
+  const { data, isLoading } = useGetUsersQuery()
+
+  console.log(data)
   const [rowModesModel, setRowModesModel] = useState<GridRowModesModel>({})
 
   const handleEditClick = (id: GridRowId) => {
     setRowModesModel(prev => ({ ...prev, [id]: { mode: GridRowModes.Edit } }))
   }
 
+  const handleSaveClick = (id: GridRowId) => {
+    setRowModesModel(prev => ({ ...prev, [id]: { mode: GridRowModes.View } }))
+  }
+
   const handleCancelClick = (id: GridRowId) => {
-    setRowModesModel({
-      ...rowModesModel,
+    setRowModesModel(prev => ({
+      ...prev,
       [id]: { mode: GridRowModes.View, ignoreModifications: true }
-    })
+    }))
   }
 
   const columns: GridColDef[] = [
@@ -63,7 +107,7 @@ const ViewUsers = () => {
       editable: true,
       valueFormatter: ({ value }: { value: string[] }) =>
         value ? value.join(', ') : '',
-
+      renderEditCell: CustomEditComponent,
       width: 560
     },
     {
@@ -78,12 +122,12 @@ const ViewUsers = () => {
         if (isInEditMode) {
           return [
             <GridActionsCellItem
-              icon={<SaveIcon />}
+              icon={<CheckIcon />}
               label="Save"
               sx={{
                 color: 'primary.main'
               }}
-              // onClick={handleSaveClick(id)}
+              onClick={() => handleSaveClick(id)}
             />,
             <GridActionsCellItem
               icon={<CancelIcon />}
@@ -126,6 +170,10 @@ const ViewUsers = () => {
           columns={columns}
           editMode="row"
           rowModesModel={rowModesModel}
+          processRowUpdate={(updatedRow, originalRow) => {
+            console.log(updatedRow, originalRow)
+            return updatedRow
+          }}
           initialState={{
             pagination: {
               paginationModel: {
