@@ -33,10 +33,11 @@ import {
   useUpdateUserMutation
 } from 'store/server'
 import { IUser } from 'types'
+import { IPermission } from 'types/permission'
 
 const CustomEditComponent = ({
   id,
-  value,
+  value = [],
   field,
   options
 }: GridRenderEditCellParams<any, string[]> & {
@@ -61,9 +62,9 @@ const CustomEditComponent = ({
       onChange={handleChange}
       sx={{ width: '100%' }}
     >
-      {options.map(({ label, value: optValue }) => (
+      {options.map(({ value: optValue, label: optLabel }) => (
         <MenuItem key={optValue} value={optValue}>
-          {label}
+          {optLabel}
         </MenuItem>
       ))}
     </Select>
@@ -100,9 +101,9 @@ const ViewUsers = () => {
   }
 
   const handleUpdateUser = async (updatedUser: IUser) => {
-    const response = await updateUser(updatedUser)
-    console.log(response)
-    return updatedUser
+    const response = await updateUser(updatedUser).unwrap()
+
+    return response
   }
 
   const columns: GridColDef[] = [
@@ -127,8 +128,12 @@ const ViewUsers = () => {
       field: 'permissions',
       headerName: 'Permissions',
       editable: true,
+      valueGetter: ({ value }: { value: IPermission[] }) =>
+        value.map(({ id }) => id),
       valueFormatter: ({ value }: { value: string[] }) =>
-        value ? value.join(', ') : '',
+        value
+          .map(id => permissions?.find(perm => perm.value === id)?.label ?? '')
+          .join(', '),
       renderEditCell: props => (
         <CustomEditComponent {...props} options={permissions} />
       ),
