@@ -1,9 +1,11 @@
+import { IPermission } from 'types/permission'
+
 export interface IUser {
-  uuid: string
+  id: string
   firstName: string
   lastName: string
   email: string
-  permissions: string[]
+  permissions: IPermission[]
 }
 
 export interface IUserLogin {

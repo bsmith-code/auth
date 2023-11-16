@@ -27,13 +27,21 @@ import {
 
 import { mockUsers } from '__mocks__/users'
 import { useState } from 'react'
-import { useGetUsersQuery } from 'store/server'
+import {
+  useGetPermissionsQuery,
+  useGetUsersQuery,
+  useUpdateUserMutation
+} from 'store/server'
+import { IUser } from 'types'
 
 const CustomEditComponent = ({
   id,
   value,
-  field
-}: GridRenderEditCellParams<any, string[]>) => {
+  field,
+  options
+}: GridRenderEditCellParams<any, string[]> & {
+  options: { label: string; value: string }[]
+}) => {
   const apiRef = useGridApiContext()
 
   const handleChange = (event: SelectChangeEvent<string[]>) => {
@@ -53,9 +61,9 @@ const CustomEditComponent = ({
       onChange={handleChange}
       sx={{ width: '100%' }}
     >
-      {['test1', 'test2', 'test3'].map(option => (
-        <MenuItem key={option} value={option}>
-          {option}
+      {options.map(({ label, value: optValue }) => (
+        <MenuItem key={optValue} value={optValue}>
+          {label}
         </MenuItem>
       ))}
     </Select>
@@ -63,9 +71,17 @@ const CustomEditComponent = ({
 }
 
 const ViewUsers = () => {
-  const { data, isLoading } = useGetUsersQuery()
+  const { data: users = [], isLoading: isFetchingUsers } = useGetUsersQuery()
+  const { permissions, isFetchingPerms } = useGetPermissionsQuery(undefined, {
+    selectFromResult: ({ data = [], isLoading }) => ({
+      permissions: data.map(({ id, name }) => ({ label: name, value: id })),
+      isFetchingPerms: isLoading
+    })
+  })
 
-  console.log(data)
+  const [updateUser, { error, isLoading: isUpdatingUser, isSuccess }] =
+    useUpdateUserMutation()
+
   const [rowModesModel, setRowModesModel] = useState<GridRowModesModel>({})
 
   const handleEditClick = (id: GridRowId) => {
@@ -81,6 +97,12 @@ const ViewUsers = () => {
       ...prev,
       [id]: { mode: GridRowModes.View, ignoreModifications: true }
     }))
+  }
+
+  const handleUpdateUser = async (updatedUser: IUser) => {
+    const response = await updateUser(updatedUser)
+    console.log(response)
+    return updatedUser
   }
 
   const columns: GridColDef[] = [
@@ -107,7 +129,9 @@ const ViewUsers = () => {
       editable: true,
       valueFormatter: ({ value }: { value: string[] }) =>
         value ? value.join(', ') : '',
-      renderEditCell: CustomEditComponent,
+      renderEditCell: props => (
+        <CustomEditComponent {...props} options={permissions} />
+      ),
       width: 560
     },
     {
@@ -165,15 +189,12 @@ const ViewUsers = () => {
       </Typography>
       <Box bgcolor="common.white" p={2} borderRadius={1}>
         <DataGrid
-          getRowId={({ uuid }: { uuid: string }) => uuid}
-          rows={mockUsers}
+          getRowId={({ id }: IUser) => id}
+          rows={users}
           columns={columns}
           editMode="row"
           rowModesModel={rowModesModel}
-          processRowUpdate={(updatedRow, originalRow) => {
-            console.log(updatedRow, originalRow)
-            return updatedRow
-          }}
+          processRowUpdate={handleUpdateUser}
           initialState={{
             pagination: {
               paginationModel: {

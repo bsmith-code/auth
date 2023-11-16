@@ -22,7 +22,7 @@ export const exceptionListeners = [
       ignoredActions(action) ? false : isRejected(action),
     effect: (action: AnyAction, { dispatch }: TAppListenerAPI) => {
       const { payload } = action as PayloadAction<{ data: { message: string } }>
-      const message = payload?.data?.message ?? 'Something went wrong.'
+      const message = payload?.data?.message
 
       if (message) {
         dispatch(createNotification(message))
