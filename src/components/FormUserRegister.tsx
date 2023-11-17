@@ -7,7 +7,9 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useRegisterMutation } from 'store/server'
 
 // MUI
-import { Box, Button, Typography } from '@mui/material'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
 
 // Components
 import InputText from 'components/InputText'
@@ -25,7 +27,7 @@ import {
   FORM_NAME_RECAPTCHA,
   FORM_NAME_FIRST_NAME,
   FORM_NAME_CONFIRM_PASSWORD
-} from 'constants/index'
+} from 'constants/forms'
 
 // Types
 import { IUserRegister } from 'types'

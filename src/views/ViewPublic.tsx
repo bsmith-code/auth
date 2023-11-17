@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 // MUI
-import { Box, Button, Paper } from '@mui/material'
+import Box from '@mui/material/Box'
+import Paper from '@mui/material/Paper'
+import Button from '@mui/material/Button'
 
 // Hooks
 import { useVerifyQuery } from 'store/server'

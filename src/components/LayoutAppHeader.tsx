@@ -5,7 +5,10 @@ import { Suspense, lazy } from 'react'
 import { selectUser } from 'store/server'
 
 // MUI
-import { Toolbar, Typography } from '@mui/material'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+
+// Hooks
 import { useAppSelector } from 'hooks/useRedux'
 
 const LayoutAppHeader = () => {

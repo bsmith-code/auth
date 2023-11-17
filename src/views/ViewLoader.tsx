@@ -1,4 +1,8 @@
-import { Box, Paper } from '@mui/material'
+// MUI
+import Box from '@mui/material/Box'
+import Paper from '@mui/material/Paper'
+
+// Components
 import LayoutDefault from 'layouts/LayoutDefault'
 
 const ViewLoader = () => (

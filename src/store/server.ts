@@ -13,6 +13,7 @@ import {
   IUserRegister,
   TAppListenerAPI
 } from 'types'
+import { IPermission } from 'types/permission'
 
 const authApi = createApi({
   reducerPath: 'auth',
@@ -49,6 +50,19 @@ const authApi = createApi({
     }),
     verify: build.query<void, string>({
       query: id => `verify/${id}`
+    }),
+    getUsers: build.query<IUser[], void>({
+      query: () => `users`
+    }),
+    updateUser: build.mutation<IUser, IUser>({
+      query: ({ id, ...restUser }) => ({
+        url: `users/${id}`,
+        method: 'PUT',
+        body: restUser
+      })
+    }),
+    getPermissions: build.query<IPermission[], void>({
+      query: () => 'permissions'
     })
   })
 })
@@ -63,8 +77,11 @@ export const {
   useVerifyQuery,
   useSessionQuery,
   useLoginMutation,
+  useGetUsersQuery,
   useLogoutMutation,
-  useRegisterMutation
+  useRegisterMutation,
+  useUpdateUserMutation,
+  useGetPermissionsQuery
 } = authApi
 
 export const authListeners = [

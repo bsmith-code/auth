@@ -6,7 +6,7 @@ import { SnackbarProvider } from 'notistack'
 import { useSessionQuery } from 'store/server'
 
 // MUI
-import { Grow } from '@mui/material'
+import Grow from '@mui/material/Grow'
 import { lightTheme } from 'styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
