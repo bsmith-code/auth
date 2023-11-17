@@ -1,8 +1,8 @@
-// MUI
+import { useState } from 'react'
+
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
-import AddIcon from '@mui/icons-material/Add'
 import MenuItem from '@mui/material/MenuItem'
 import EditIcon from '@mui/icons-material/Edit'
 import Typography from '@mui/material/Typography'
@@ -11,27 +11,21 @@ import CancelIcon from '@mui/icons-material/Close'
 import DeleteIcon from '@mui/icons-material/DeleteOutlined'
 import {
   DataGrid,
-  GridColDef,
-  GridRowsProp,
-  GridRowModesModel,
-  GridRowModes,
-  GridToolbarContainer,
-  GridActionsCellItem,
-  GridEventListener,
   GridRowId,
-  GridRowModel,
-  GridRowEditStopReasons,
+  GridColDef,
+  GridRowModes,
+  GridRowModesModel,
   useGridApiContext,
+  GridActionsCellItem,
   GridRenderEditCellParams
 } from '@mui/x-data-grid'
 
-import { mockUsers } from '__mocks__/users'
-import { useState } from 'react'
 import {
   useGetPermissionsQuery,
   useGetUsersQuery,
   useUpdateUserMutation
 } from 'store/server'
+
 import { IUser } from 'types'
 import { IPermission } from 'types/permission'
 
