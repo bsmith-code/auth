@@ -5,15 +5,7 @@ module.exports = {
   parserOptions: {
     project: './tsconfig.json',
   },
-  extends: [
-    'airbnb',
-    'airbnb-typescript',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
-    'plugin:promise/recommended',
-    'plugin:unicorn/recommended',
-    'plugin:prettier/recommended',
-  ],
+  extends: ['airbnb', 'airbnb-typescript', 'plugin:@typescript-eslint/recommended', 'plugin:@typescript-eslint/recommended-requiring-type-checking', 'plugin:promise/recommended', 'plugin:unicorn/recommended', 'plugin:prettier/recommended', 'plugin:storybook/recommended'],
   rules: {
     // Floating promises in useEffects
     'no-void': 'off',
