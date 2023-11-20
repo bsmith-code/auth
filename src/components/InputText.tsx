@@ -1,12 +1,10 @@
-// Common
 import {
-  Path,
   FieldValues,
-  UseFormReturn,
-  useController
+  Path,
+  useController,
+  UseFormReturn
 } from 'react-hook-form'
 
-// MUI
 import TextField from '@mui/material/TextField'
 
 interface IProps<T extends FieldValues> {
@@ -44,3 +42,62 @@ const InputText = <T extends FieldValues>({
 }
 
 export default InputText
+
+// RADIO
+
+// interface IProps<T extends FieldValues> {
+//   name: Path<T>
+//   label: string
+//   control: Control<T>
+// }
+// export const InputRadioBase = <T extends FieldValues>({
+//   name,
+//   label,
+//   control
+// }: IProps<T>) => {
+//   const { field } = useController({ name, control })
+
+//   return (
+//     <FormControl>
+//       <FormLabel>{label}</FormLabel>
+//       <RadioGroup {...field}>
+//         <FormControlLabel
+//           value="option1"
+//           control={<Radio />}
+//           label="Option 1"
+//         />
+//         <FormControlLabel
+//           value="option2"
+//           control={<Radio />}
+//           label="Option 2"
+//         />
+//         <FormControlLabel
+//           value="option3"
+//           control={<Radio />}
+//           label="Option 3"
+//         />
+//       </RadioGroup>
+//     </FormControl>
+//   )
+// }
+
+// CHECKBOX
+
+// interface IProps<T extends FieldValues> {
+//   name: Path<T>
+//   label: string
+//   control: Control<T>
+// }
+
+// export const InputCheckboxBase = <T extends FieldValues>({
+//   name,
+//   label,
+//   control
+// }: IProps<T>) => {
+//   const {
+//     field,
+//     fieldState: { error }
+//   } = useController({ name, control })
+
+//   return <FormControlLabel {...field} label={label} control={<Checkbox />} />
+// }

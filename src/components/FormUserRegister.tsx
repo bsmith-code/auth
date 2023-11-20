@@ -1,35 +1,28 @@
-// Common
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
-// Store
 import { useRegisterMutation } from 'store/server'
 
-// MUI
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 
-// Components
-import InputText from 'components/InputText'
 import InputReCaptcha from 'components/InputRecaptcha'
+import InputText from 'components/InputText'
 
-// Utils
 import { signUpSchema } from 'utils'
 
-// Constants
 import {
+  FORM_NAME_CONFIRM_PASSWORD,
   FORM_NAME_EMAIL,
-  FORM_NAME_PASSWORD,
-  FORM_NAME_LAST_NAME,
-  FORM_SIGN_UP_FIELDS,
-  FORM_NAME_RECAPTCHA,
   FORM_NAME_FIRST_NAME,
-  FORM_NAME_CONFIRM_PASSWORD
+  FORM_NAME_LAST_NAME,
+  FORM_NAME_PASSWORD,
+  FORM_NAME_RECAPTCHA,
+  FORM_SIGN_UP_FIELDS
 } from 'constants/forms'
 
-// Types
 import { IUserRegister } from 'types'
 
 interface IProps {

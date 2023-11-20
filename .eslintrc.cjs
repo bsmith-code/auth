@@ -5,8 +5,34 @@ module.exports = {
   parserOptions: {
     project: './tsconfig.json',
   },
+  plugins: ['simple-import-sort'],
   extends: ['airbnb', 'airbnb-typescript', 'plugin:@typescript-eslint/recommended', 'plugin:@typescript-eslint/recommended-requiring-type-checking', 'plugin:promise/recommended', 'plugin:unicorn/recommended', 'plugin:prettier/recommended', 'plugin:storybook/recommended'],
   rules: {
+    'simple-import-sort/imports': [
+      'error',
+      {
+        groups: [
+          // Packages `react` related packages come first.
+          ['^react', '^@?\\w'],
+          // Store
+          ['^(store)(/.*|$)'],
+          // MUI
+          ['^(@mui)(/.*|$)'],
+          // Context
+          ['^(context)(/.*|$)'],
+          // Hooks
+          ['^(hooks)(/.*|$)'],
+          // Components
+          ['^(routers|layout|views|components)(/.*|$)'],
+          // Utils
+          ['^(utils)(/.*|$)'],
+          // Constants
+          ['^(constants)(/.*|$)'],
+          // Types
+          ['^(types)(/.*|$)']
+        ]
+      }
+    ],
     // Floating promises in useEffects
     'no-void': 'off',
     // Too restrictive: https://eslint.org/docs/rules/no-prototype-builtins
@@ -55,6 +81,12 @@ module.exports = {
       { functions: 'defaultArguments' },
     ],
     'react/jsx-props-no-spreading': 'off',
+    '@typescript-eslint/no-misused-promises': [
+      'error',
+      {
+        checksVoidReturn: false
+      }
+    ]
   },
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   settings: { react: { version: '18.2' } },

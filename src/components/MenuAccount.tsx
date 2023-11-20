@@ -1,19 +1,18 @@
 // Store
 import { useLogoutMutation } from 'store/server'
 
-// MUI
-import Menu from '@mui/material/Menu'
+import Logout from '@mui/icons-material/Logout'
 import Avatar from '@mui/material/Avatar'
-import Tooltip from '@mui/material/Tooltip'
-import MenuItem from '@mui/material/MenuItem'
 import IconButton from '@mui/material/IconButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
-import Logout from '@mui/icons-material/Logout'
+// MUI
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
+import Tooltip from '@mui/material/Tooltip'
 
 // Hooks
 import { useMenu } from 'hooks/useMenu'
 
-// Types
 import { IUser } from 'types'
 
 interface IProps {
