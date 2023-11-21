@@ -24,6 +24,8 @@ module.exports = {
           ['^(hooks)(/.*|$)'],
           // Components
           ['^(routers|layout|views|components)(/.*|$)'],
+          // Styles
+          ['^(styles|theme)(/.*|$)'],
           // Utils
           ['^(utils)(/.*|$)'],
           // Constants
