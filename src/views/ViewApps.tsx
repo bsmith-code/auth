@@ -1,8 +1,9 @@
 import Grid from '@mui/material/Grid'
 import Link from '@mui/material/Link'
 import Paper from '@mui/material/Paper'
-import Typography from '@mui/material/Typography'
 import { styled } from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
+
 import { StyledAbsoluteCenter } from 'styles'
 
 const StyledGridItem = styled(Paper)(({ theme }) => ({

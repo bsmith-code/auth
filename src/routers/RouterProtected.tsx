@@ -1,12 +1,9 @@
-// Common
 import { ReactNode } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import LayoutDefault from 'layouts/LayoutDefault'
 
-// Hooks
 import { useIdleSession } from 'hooks/useIdleSession'
 
-// Components
 import ViewApps from 'views/ViewApps'
 import ViewUsers from 'views/ViewUsers'
 

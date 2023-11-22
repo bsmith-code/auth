@@ -1,10 +1,8 @@
-// Common
 import { ReactNode } from 'react'
-import { Routes, BrowserRouter, Route, Navigate } from 'react-router-dom'
-
-// Components
-import ViewPublic from 'views/ViewPublic'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import LayoutDefault from 'layouts/LayoutDefault'
+
+import ViewPublic from 'views/ViewPublic'
 
 const PreparedView = ({ view }: { view: ReactNode }) => (
   <LayoutDefault>{view}</LayoutDefault>

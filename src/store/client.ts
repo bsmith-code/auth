@@ -1,8 +1,6 @@
-// Common
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import uniqid from 'uniqid'
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-// Types
 import { IRootState } from 'types'
 
 interface IAppState {
