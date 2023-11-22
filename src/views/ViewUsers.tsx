@@ -10,11 +10,13 @@ import CheckIcon from '@mui/icons-material/Check'
 import CancelIcon from '@mui/icons-material/Close'
 import DeleteIcon from '@mui/icons-material/DeleteOutlined'
 import EditIcon from '@mui/icons-material/Edit'
-import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
-import MenuItem from '@mui/material/MenuItem'
-import Select, { SelectChangeEvent } from '@mui/material/Select'
-import Typography from '@mui/material/Typography'
+import {
+  Box,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  Typography
+} from '@mui/material'
 import {
   DataGrid,
   GridActionsCellItem,
@@ -64,7 +66,7 @@ const CustomEditComponent = ({
   )
 }
 
-const ViewUsers = () => {
+export const ViewUsers = () => {
   const { data: users = [], isLoading: isFetchingUsers } = useGetUsersQuery()
   const { permissions, isFetchingPerms } = useGetPermissionsQuery(undefined, {
     selectFromResult: ({ data = [], isLoading }) => ({
@@ -205,5 +207,3 @@ const ViewUsers = () => {
     </Box>
   )
 }
-
-export default ViewUsers

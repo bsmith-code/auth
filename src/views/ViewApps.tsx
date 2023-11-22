@@ -1,8 +1,5 @@
-import Grid from '@mui/material/Grid'
-import Link from '@mui/material/Link'
-import Paper from '@mui/material/Paper'
+import { Grid, Link, Paper, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import Typography from '@mui/material/Typography'
 
 import { StyledAbsoluteCenter } from 'styles'
 
@@ -41,7 +38,7 @@ const myApps = [
   }
 ]
 
-const ViewApps = () => (
+export const ViewApps = () => (
   <StyledAbsoluteCenter margin="0 auto" maxWidth="600px">
     <Typography variant="h3" component="h1" mb={4}>
       My Apps
@@ -60,5 +57,3 @@ const ViewApps = () => (
     </Grid>
   </StyledAbsoluteCenter>
 )
-
-export default ViewApps

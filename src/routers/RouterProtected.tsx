@@ -9,7 +9,9 @@ const RouterProtected = () => {
 
   return (
     <Routes>
-      {availableRoutes}
+      {availableRoutes.map(props => (
+        <Route key={props.path} {...props} />
+      ))}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )

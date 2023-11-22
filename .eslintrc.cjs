@@ -82,6 +82,7 @@ module.exports = {
       'error',
       { functions: 'defaultArguments' },
     ],
+    'react/prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
     '@typescript-eslint/no-misused-promises': [
       'error',

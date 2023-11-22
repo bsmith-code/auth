@@ -1,6 +1,9 @@
 import { NavLink } from 'react-router-dom'
 
-import { Box, styled } from '@mui/material'
+import { Box } from '@mui/material'
+import { styled } from '@mui/material/styles'
+
+import { useAppRouter } from 'hooks/useAppRouter'
 
 const StyledLink = styled(NavLink)(({ theme }) => ({
   fontWeight: 700,
@@ -15,9 +18,16 @@ const StyledLink = styled(NavLink)(({ theme }) => ({
   }
 }))
 
-export const NavAppMenu = () => (
-  <Box component="nav">
-    <StyledLink to="/">Home</StyledLink>
-    <StyledLink to="/users">Users</StyledLink>
-  </Box>
-)
+export const NavAppMenu = () => {
+  const { availableRoutes } = useAppRouter()
+
+  return (
+    <Box component="nav">
+      {availableRoutes.map(({ path, label }) => (
+        <StyledLink key={`link-${label}`} to={path}>
+          {label}
+        </StyledLink>
+      ))}
+    </Box>
+  )
+}
