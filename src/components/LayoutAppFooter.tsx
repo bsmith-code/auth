@@ -1,6 +1,4 @@
-// MUI
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
+import { Toolbar, Typography } from '@mui/material'
 
 const LayoutAppFooter = () => {
   const year = new Date().getFullYear()

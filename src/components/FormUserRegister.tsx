@@ -4,9 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 
 import { useRegisterMutation } from 'store/server'
 
-import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
+import { Box, Button, Typography } from '@mui/material'
 
 import InputReCaptcha from 'components/InputRecaptcha'
 import InputText from 'components/InputText'
