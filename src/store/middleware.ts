@@ -1,17 +1,14 @@
-// Common
 import {
-  isAnyOf,
   AnyAction,
+  createListenerMiddleware,
+  isAnyOf,
   isRejected,
-  PayloadAction,
-  createListenerMiddleware
+  PayloadAction
 } from '@reduxjs/toolkit'
 
-// Store
 import { createNotification } from 'store/client'
 import { authEndpoints, authListeners } from 'store/server'
 
-// Types
 import { TAppListenerAPI, TAppStartListening } from 'types'
 
 const ignoredActions = isAnyOf(authEndpoints.session.matchRejected)

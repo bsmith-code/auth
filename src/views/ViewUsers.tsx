@@ -1,33 +1,34 @@
 import { useState } from 'react'
 
-import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
-import Select, { SelectChangeEvent } from '@mui/material/Select'
-import MenuItem from '@mui/material/MenuItem'
-import EditIcon from '@mui/icons-material/Edit'
-import Typography from '@mui/material/Typography'
-import CheckIcon from '@mui/icons-material/Check'
-import CancelIcon from '@mui/icons-material/Close'
-import DeleteIcon from '@mui/icons-material/DeleteOutlined'
-import {
-  DataGrid,
-  GridRowId,
-  GridColDef,
-  GridRowModes,
-  GridRowModesModel,
-  useGridApiContext,
-  GridActionsCellItem,
-  GridRenderEditCellParams
-} from '@mui/x-data-grid'
-
 import {
   useGetPermissionsQuery,
   useGetUsersQuery,
   useUpdateUserMutation
 } from 'store/server'
 
-import { IUser } from 'types'
-import { IPermission } from 'types/permission'
+import CheckIcon from '@mui/icons-material/Check'
+import CancelIcon from '@mui/icons-material/Close'
+import DeleteIcon from '@mui/icons-material/DeleteOutlined'
+import EditIcon from '@mui/icons-material/Edit'
+import {
+  Box,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  Typography
+} from '@mui/material'
+import {
+  DataGrid,
+  GridActionsCellItem,
+  GridColDef,
+  GridRenderEditCellParams,
+  GridRowId,
+  GridRowModes,
+  GridRowModesModel,
+  useGridApiContext
+} from '@mui/x-data-grid'
+
+import { IPermission, IUser } from 'types'
 
 const CustomEditComponent = ({
   id,
@@ -65,7 +66,7 @@ const CustomEditComponent = ({
   )
 }
 
-const ViewUsers = () => {
+export const ViewUsers = () => {
   const { data: users = [], isLoading: isFetchingUsers } = useGetUsersQuery()
   const { permissions, isFetchingPerms } = useGetPermissionsQuery(undefined, {
     selectFromResult: ({ data = [], isLoading }) => ({
@@ -206,5 +207,3 @@ const ViewUsers = () => {
     </Box>
   )
 }
-
-export default ViewUsers

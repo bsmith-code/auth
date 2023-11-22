@@ -1,13 +1,11 @@
-// Common
 import * as yup from 'yup'
 
-// Constants
 import {
-  FORM_NAME_EMAIL,
-  FORM_NAME_PASSWORD,
-  FORM_NAME_LAST_NAME,
-  FORM_NAME_FIRST_NAME,
   FORM_NAME_CONFIRM_PASSWORD,
+  FORM_NAME_EMAIL,
+  FORM_NAME_FIRST_NAME,
+  FORM_NAME_LAST_NAME,
+  FORM_NAME_PASSWORD,
   FORM_NAME_RECAPTCHA
 } from 'constants/forms'
 

@@ -1,11 +1,8 @@
-// Common
 import { Action } from '@reduxjs/toolkit'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-// Store
 import { createNotification } from 'store/client'
 
-// Types
 import {
   IRootState,
   IUser,

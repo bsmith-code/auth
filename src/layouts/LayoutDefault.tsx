@@ -1,13 +1,9 @@
-// Common
 import { ReactNode } from 'react'
 
-// MUI
 import Box from '@mui/material/Box'
 
-// Hooks
 import { useAppNotifications } from 'hooks/useAppNotifications'
 
-// Components
 import LayoutAppFooter from 'components/LayoutAppFooter'
 import LayoutAppHeader from 'components/LayoutAppHeader'
 
@@ -22,7 +18,7 @@ const LayoutDefault = ({ children }: IProps) => {
       <LayoutAppHeader />
       <Box
         zIndex={10}
-        width="100vw"
+        width="100%"
         position="relative"
         height="calc(100vh - 64px - 48px)"
         sx={{

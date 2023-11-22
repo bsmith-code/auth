@@ -1,14 +1,8 @@
-// Common
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
-// Middleware
-import { listenerMiddleware } from 'store/middleware'
-
-// Server
-import { authReducer, authMiddleware, authReducerPath } from 'store/server'
-
-// Client
 import { appReducer } from 'store/client'
+import { listenerMiddleware } from 'store/middleware'
+import { authMiddleware, authReducer, authReducerPath } from 'store/server'
 
 export const reducer = combineReducers({
   app: appReducer,

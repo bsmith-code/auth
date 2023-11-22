@@ -1,19 +1,17 @@
-// Store
 import { useLogoutMutation } from 'store/server'
 
-// MUI
-import Menu from '@mui/material/Menu'
-import Avatar from '@mui/material/Avatar'
-import Tooltip from '@mui/material/Tooltip'
-import MenuItem from '@mui/material/MenuItem'
-import IconButton from '@mui/material/IconButton'
-import ListItemIcon from '@mui/material/ListItemIcon'
 import Logout from '@mui/icons-material/Logout'
+import {
+  Avatar,
+  IconButton,
+  ListItemIcon,
+  Menu,
+  MenuItem,
+  Tooltip
+} from '@mui/material'
 
-// Hooks
 import { useMenu } from 'hooks/useMenu'
 
-// Types
 import { IUser } from 'types'
 
 interface IProps {
@@ -24,7 +22,7 @@ const getFirstLetter = (str: string) => str.charAt(0)
 const getUserInitials = (user: IUser) =>
   `${getFirstLetter(user.firstName)}${getFirstLetter(user.lastName)}`
 
-const MenuAccount = ({ user }: IProps) => {
+export const MenuAccount = ({ user }: IProps) => {
   const userInitials = getUserInitials(user)
   const { isOpen, anchorEl, handleOpenMenu, handleCloseMenu } = useMenu()
   const [logout] = useLogoutMutation()
@@ -58,5 +56,3 @@ const MenuAccount = ({ user }: IProps) => {
     </>
   )
 }
-
-export default MenuAccount

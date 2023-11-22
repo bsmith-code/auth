@@ -1,20 +1,17 @@
-// Common
 import { lazy, Suspense } from 'react'
 import { SnackbarProvider } from 'notistack'
 
-// Store
 import { useSessionQuery } from 'store/server'
 
-// MUI
-import Grow from '@mui/material/Grow'
-import { lightTheme } from 'styles'
 import CssBaseline from '@mui/material/CssBaseline'
-import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
+import Grow from '@mui/material/Grow'
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles'
 
-// Components
-import ViewLoader from 'views/ViewLoader'
+import { ViewLoader } from 'views/ViewLoader'
 
-const App = () => {
+import { lightTheme } from 'styles'
+
+export const App = () => {
   const { data: user } = useSessionQuery()
 
   const RouterPublic = lazy(() => import('routers/RouterPublic'))
@@ -33,5 +30,3 @@ const App = () => {
     </StyledEngineProvider>
   )
 }
-
-export default App

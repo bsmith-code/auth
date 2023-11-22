@@ -1,16 +1,11 @@
-// MUI
-import Box from '@mui/material/Box'
-import Paper from '@mui/material/Paper'
-
-// Components
 import LayoutDefault from 'layouts/LayoutDefault'
 
-const ViewLoader = () => (
+import { Backdrop, CircularProgress } from '@mui/material'
+
+export const ViewLoader = () => (
   <LayoutDefault>
-    <Paper p={8} component={Box}>
-      Loading...
-    </Paper>
+    <Backdrop open>
+      <CircularProgress />
+    </Backdrop>
   </LayoutDefault>
 )
-
-export default ViewLoader

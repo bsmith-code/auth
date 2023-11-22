@@ -1,20 +1,15 @@
-// Common
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-// MUI
-import Box from '@mui/material/Box'
-import Paper from '@mui/material/Paper'
-import Button from '@mui/material/Button'
-
-// Hooks
 import { useVerifyQuery } from 'store/server'
 
-// Components
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Paper from '@mui/material/Paper'
+
 import FormUserLogin from 'components/FormUserLogin'
 import FormUserRegister from 'components/FormUserRegister'
 
-// Styles
 import { StyledAbsoluteCenter } from 'styles'
 
 const ViewPublic = () => {
