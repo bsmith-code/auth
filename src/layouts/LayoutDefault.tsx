@@ -10,7 +10,7 @@ import LayoutAppHeader from 'components/LayoutAppHeader'
 interface IProps {
   children: ReactNode
 }
-const LayoutDefault = ({ children }: IProps) => {
+export const LayoutDefault = ({ children }: IProps) => {
   useAppNotifications()
 
   return (
@@ -47,5 +47,3 @@ const LayoutDefault = ({ children }: IProps) => {
     </>
   )
 }
-
-export default LayoutDefault
