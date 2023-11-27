@@ -52,11 +52,7 @@ const FormUserRegister = ({ onToggleForm }: IProps) => {
   }, [isSuccess])
 
   return (
-    <form
-      onSubmit={e => {
-        void handleSubmit(e)
-      }}
-    >
+    <form onSubmit={handleSubmit}>
       <Box mb={3}>
         <Typography variant="h5">Sign up</Typography>
       </Box>

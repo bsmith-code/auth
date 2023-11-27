@@ -1,22 +1,14 @@
-// Common
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
-// Store
 import { useLoginMutation } from 'store/server'
 
-// MUI
-import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
+import { Box, Button, Typography } from '@mui/material'
 
-// Components
 import InputText from 'components/InputText'
 
-// Utils
 import { signInSchema } from 'utils'
 
-// Constants
 import {
   FORM_NAME_EMAIL,
   FORM_NAME_PASSWORD,
@@ -40,11 +32,7 @@ const FormUserLogin = () => {
   })
 
   return (
-    <form
-      onSubmit={e => {
-        void handleSubmit(e)
-      }}
-    >
+    <form onSubmit={handleSubmit}>
       <Box mb={3}>
         <Typography variant="h5">Sign in</Typography>
       </Box>

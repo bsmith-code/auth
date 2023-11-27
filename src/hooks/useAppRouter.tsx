@@ -1,10 +1,11 @@
 import { ReactNode, useMemo } from 'react'
-import LayoutDefault from 'layouts/LayoutDefault'
+import { shallowEqual } from 'react-redux'
 
 import { selectUser } from 'store/server'
 
 import { useAppSelector } from 'hooks/useRedux'
 
+import { LayoutDefault } from 'layouts/LayoutDefault'
 import { ViewApps } from 'views/ViewApps'
 import { ViewUsers } from 'views/ViewUsers'
 
@@ -29,7 +30,7 @@ const allRoutes = [
 ]
 
 export const useAppRouter = () => {
-  const user = useAppSelector(selectUser)
+  const user = useAppSelector(selectUser, shallowEqual)
   const userPermissions = user?.permissions ?? []
 
   const availableRoutes = useMemo(

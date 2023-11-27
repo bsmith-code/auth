@@ -12,7 +12,7 @@ import FormUserRegister from 'components/FormUserRegister'
 
 import { StyledAbsoluteCenter } from 'styles'
 
-const ViewPublic = () => {
+export const ViewPublic = () => {
   const [searchParams, setSearchParams] = useSearchParams()
 
   const [isSignIn, setIsSignIn] = useState(true)
@@ -47,5 +47,3 @@ const ViewPublic = () => {
     </StyledAbsoluteCenter>
   )
 }
-
-export default ViewPublic

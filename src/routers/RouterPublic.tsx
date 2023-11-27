@@ -1,8 +1,8 @@
 import { ReactNode } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import LayoutDefault from 'layouts/LayoutDefault'
 
-import ViewPublic from 'views/ViewPublic'
+import { LayoutDefault } from 'layouts/LayoutDefault'
+import { ViewPublic } from 'views/ViewPublic'
 
 const PreparedView = ({ view }: { view: ReactNode }) => (
   <LayoutDefault>{view}</LayoutDefault>

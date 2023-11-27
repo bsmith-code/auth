@@ -1,7 +1,7 @@
 import ReCAPTCHA from 'react-google-recaptcha'
 import { useController, UseFormReturn } from 'react-hook-form'
 
-import FormHelperText from '@mui/material/FormHelperText'
+import { FormHelperText } from '@mui/material'
 
 import { FORM_NAME_RECAPTCHA } from 'constants/forms'
 

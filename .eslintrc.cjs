@@ -23,7 +23,7 @@ module.exports = {
           // Hooks
           ['^(hooks)(/.*|$)'],
           // Components
-          ['^(routers|layout|views|components)(/.*|$)'],
+          ['^(routers|layouts|views|components)(/.*|$)'],
           // Styles
           ['^(styles|theme)(/.*|$)'],
           // Utils
