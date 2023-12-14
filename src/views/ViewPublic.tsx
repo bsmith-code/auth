@@ -24,7 +24,8 @@ export const ViewPublic = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      setSearchParams('')
+      searchParams.delete('verifyUser')
+      setSearchParams(searchParams)
     }
   }, [isSuccess])
 

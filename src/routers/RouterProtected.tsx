@@ -1,4 +1,5 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Navigate, Route, Routes, useSearchParams } from 'react-router-dom'
 
 import { useAppRouter } from 'hooks/useAppRouter'
 import { useIdleSession } from 'hooks/useIdleSession'
@@ -6,8 +7,17 @@ import { useIdleSession } from 'hooks/useIdleSession'
 const RouterProtected = () => {
   useIdleSession()
   const { availableRoutes } = useAppRouter()
+  const [searchParams] = useSearchParams()
 
-  return (
+  const redirectUrl = searchParams.get('redirectUrl')
+
+  useEffect(() => {
+    if (redirectUrl) {
+      window.location.assign(redirectUrl)
+    }
+  }, [redirectUrl])
+
+  return redirectUrl ? null : (
     <Routes>
       {availableRoutes.map(props => (
         <Route key={props.path} {...props} />

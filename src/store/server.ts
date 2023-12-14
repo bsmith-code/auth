@@ -1,4 +1,4 @@
-import { Action } from '@reduxjs/toolkit'
+import { AnyAction } from '@reduxjs/toolkit'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import { createNotification } from 'store/client'
@@ -17,7 +17,10 @@ const authApi = createApi({
   tagTypes: ['IUser'],
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.REACT_APP_API_BASE_URL ?? ''}/v1/auth`,
-    credentials: 'include'
+    credentials: 'include',
+    prepareHeaders: headers => {
+      headers.set('Search-Params', window.location.search)
+    }
   }),
   endpoints: build => ({
     login: build.mutation<IUser, IUserLogin>({
@@ -84,19 +87,19 @@ export const {
 export const authListeners = [
   {
     matcher: authEndpoints.logout.matchFulfilled,
-    effect: (_: Action, { dispatch }: TAppListenerAPI) => {
+    effect: (_: AnyAction, { dispatch }: TAppListenerAPI) => {
       dispatch(authUtil.resetApiState())
     }
   },
   {
     matcher: authEndpoints.register.matchFulfilled,
-    effect: (_: Action, { dispatch }: TAppListenerAPI) => {
+    effect: (_: AnyAction, { dispatch }: TAppListenerAPI) => {
       dispatch(createNotification('Please verify your email.'))
     }
   },
   {
     matcher: authEndpoints.verify.matchFulfilled,
-    effect: (_: Action, { dispatch }: TAppListenerAPI) => {
+    effect: (_: AnyAction, { dispatch }: TAppListenerAPI) => {
       dispatch(createNotification('User verified.'))
     }
   }
