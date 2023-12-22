@@ -70,6 +70,14 @@ module.exports = {
     'array-callback-return': 'off',
     'no-extra-boolean-cast': 'off',
     'react/react-in-jsx-scope': 'off',
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: true,
+        optionalDependencies: false,
+        peerDependencies: false
+      }
+    ],
     'react/function-component-definition': [
       'error',
       {

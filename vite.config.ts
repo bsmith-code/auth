@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import reactRefresh from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import checker from 'vite-plugin-checker'
